@@ -5,4 +5,4 @@
 This repository is the source code for our website. 
 
 ## Contributors:
-- [Shreepa Parthaje (sparthaje)]("https://github.com/spartahje")
+- [Shreepa Parthaje - sparthaje]("https://github.com/spartahje")
