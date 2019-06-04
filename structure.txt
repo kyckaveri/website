@@ -1,0 +1,6 @@
+# planning
+
+apps
+    publicviewcontroller
+    privateviewcontroller
+    modelcontroller
