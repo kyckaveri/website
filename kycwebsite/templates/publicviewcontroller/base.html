@@ -20,7 +20,6 @@
             crossorigin="anonymous"></script>
 
     <!-- Fonts -->
-    <!--<link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">-->
 
     <style>
         @font-face {
@@ -35,6 +34,28 @@
     <!--&lt;!&ndash; Favicon &ndash;&gt;-->
     <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
 
+    <!--  JS  -->
+    <script type="text/javascript">
+        window.onload = function () {
+            var page = "{{page_name}}".trim();
+            if (page == "home") {
+                var homeLink = document.getElementById('home-link');
+                homeLink.className += " active";
+            } else if (page == "members") {
+                var membersLink = document.getElementById('members-link');
+                membersLink.className += " active";
+            } else if (page == "projects") {
+                var projectsLink = document.getElementById('projects-link');
+                projectsLink.className += " active";
+            } else if (page == "login") {
+                var loginLink = document.getElementById('login-link');
+                var loginLinkCollpased = document.getElementById('collapsed-login-link');
+                loginLink.className += " active";
+                loginLinkCollpased.className += " active";
+            }
+        };
+    </script>
+
     <!-- Jquery -->
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 
@@ -43,6 +64,49 @@
 </head>
 
 <body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top sticky">
+
+    <a class="navbar-brand" href="{% url 'publicviewcontroller:home' %}" id="long-navbar-brand">
+        <img src="{% static 'publicviewcontroller/img/logo.png' %}"
+             width="40" height="40" class="d-inline-block align-top" alt="">
+        Kaveri Youth Committee
+    </a>
+
+    <a class="navbar-brand" href="{% url 'publicviewcontroller:home' %}" id="short-navbar-brand">
+        <img src="{% static 'publicviewcontroller/img/logo.png' %}"
+             width="30" height="30" class="d-inline-block align-top" alt="">
+        KYC
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item" id="home-link">
+                    <a class="nav-link" href="{% url 'publicviewcontroller:home' %}">Home</a>
+                </li>
+                <li class="nav-item" id="members-link">
+                    <a class="nav-link" href="{% url 'publicviewcontroller:members' %}">Members</a>
+                </li>
+                <li class="nav-item" id="projects-link">
+                    <a class="nav-link" href="{% url 'publicviewcontroller:projects' %}">Projects</a>
+                </li>
+                <li class="nav-item" id="collapsed-login-link">
+                    <a class="nav-link" href="#">Login</a>
+                </li>
+                <li class="nav-item nav-item-right" id="login-link">
+                    <a class="nav-link" href="#">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 {% block content %}
 {% endblock %}
 </body>

@@ -1,5 +1,67 @@
 body {
     font-family: Lato_Light, sans-serif;
     font-size: 20px;
-    font-weight: lighter;
+    font-weight: normal;
+}
+
+.sticky {
+    position: sticky;
+    top: 0; /* When the element reaches top: 10px, it becomes fixed. */
+    z-index: 100;
+}
+
+.bg-light {
+    background-color: #f5f6f7 !important;
+}
+
+#long-navbar-brand {
+    display: inline-block;
+    visibility: visible;
+    font-size: 28px;
+}
+
+#short-navbar-brand {
+    display: none;
+    visibility: hidden;
+}
+
+.nav-item-right {
+    position: absolute;
+    right: 20px;
+}
+
+#login-link {
+    display: block;
+    visibility: visible;
+}
+
+#collapsed-login-link {
+    display: none;
+    visibility: hidden;
+}
+
+/* Navigation Bar Collapses */
+@media (max-width: 991px) {
+    #login-link {
+        display: none;
+        visibility: hidden;
+    }
+
+    #collapsed-login-link {
+        display: inherit;
+        visibility: visible;
+    }
+}
+
+/* Kaveri Youth Committee Collapses */
+@media (max-width: 500px) {
+    #long-navbar-brand {
+        display: none;
+        visibility: hidden;
+    }
+
+    #short-navbar-brand {
+        display: inline-block;
+        visibility: visible;
+    }
 }
