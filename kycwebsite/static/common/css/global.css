@@ -1,15 +1,15 @@
 :root {
     --accent: #ff9a52;
-    --accent-transparent: rgba(255, 154, 82, 0.81);
+    --accent-transparent: rgba(255, 134, 52, 0.81);
 
-    --accent-text: #c36406;
+    --accent-text: #f56400;
     --black-text: rgba(0, 0, 0, 0.9);
     --light-text: rgba(0, 0, 0, 0.5);
     --white-text: rgba(1, 1, 1, 0.9);
 }
 
 body {
-    font-family: Lato_Light, sans-serif;
+    font-family: Lato_Light, 'Lato', sans-serif;
     font-size: 20px;
     font-weight: normal;
 }
