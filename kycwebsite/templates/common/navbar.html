@@ -24,11 +24,12 @@
     <style>
         @font-face {
             font-family: 'Lato_Light';
-            src: url('{% static 'common/fonts/lato-light-webfont.woff' %}') format('embedded-opentype');
+            src: url('{% static ' common/fonts/lato-light-webfont.woff ' %}') format('embedded-opentype');
         }
     </style>
 
     <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'common/css/global.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'common/css/navbar.css' %}"/>
 
     <!--&lt;!&ndash; Favicon &ndash;&gt;-->
@@ -38,18 +39,35 @@
     <script type="text/javascript">
         window.onload = function () {
             var page = "{{page_name}}".trim();
+
+            var homeLink = document.getElementById('home-link');
+            var membersLink = document.getElementById('members-link');
+            var projectsLink = document.getElementById('projects-link');
+            var loginLink = document.getElementById('login-link');
+            var loginLinkCollpased = document.getElementById('collapsed-login-link');
+
             if (page == "home") {
-                var homeLink = document.getElementById('home-link');
                 homeLink.className += " active";
+                membersLink.className += " inactive";
+                projectsLink.className += " inactive";
+                loginLink.className += " inactive";
+                loginLinkCollpased.className += " inactive";
             } else if (page == "members") {
-                var membersLink = document.getElementById('members-link');
+                homeLink.className += " inactive";
                 membersLink.className += " active";
+                projectsLink.className += " inactive";
+                loginLink.className += " inactive";
+                loginLinkCollpased.className += " inactive";
             } else if (page == "projects") {
-                var projectsLink = document.getElementById('projects-link');
+                homeLink.className += " inactive";
+                membersLink.className += " inactive";
                 projectsLink.className += " active";
+                loginLink.className += " inactive";
+                loginLinkCollpased.className += " inactive";
             } else if (page == "login") {
-                var loginLink = document.getElementById('login-link');
-                var loginLinkCollpased = document.getElementById('collapsed-login-link');
+                homeLink.className += " inactive";
+                membersLink.className += " inactive";
+                projectsLink.className += " inactive";
                 loginLink.className += " active";
                 loginLinkCollpased.className += " active";
             }

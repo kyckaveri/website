@@ -1,3 +1,15 @@
 :root {
-    --navbar-bg-color: #f5f6f7;
+    --accent-text: #d78943;
+    --black-text: rgba(0, 0, 0, 0.9);
+    --light-text: rgba(0, 0, 0, 0.5);
+}
+
+body {
+    font-family: Lato_Light, sans-serif;
+    font-size: 20px;
+    font-weight: normal;
+}
+
+/* Change variables to confirm to iOS / macOS dark mode */
+@media (prefers-color-scheme: dark) {
 }

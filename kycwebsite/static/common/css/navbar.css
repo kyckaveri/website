@@ -1,12 +1,6 @@
-body {
-    font-family: Lato_Light, sans-serif;
-    font-size: 20px;
-    font-weight: normal;
-}
-
 .sticky {
     position: sticky;
-    top: 0; /* When the element reaches top: 10px, it becomes fixed. */
+    top: 0;
     z-index: 100;
 }
 
@@ -23,6 +17,18 @@ body {
 #short-navbar-brand {
     display: none;
     visibility: hidden;
+}
+
+.navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
+    color: var(--accent-text);
+}
+
+.navbar-light .navbar-nav > .nav-link:hover, .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link:hover {
+    color: var(--black-text);
+}
+
+.navbar-light .navbar-nav .active > .nav-link:hover, .navbar-light .navbar-nav .nav-link.active:hover, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link:hover {
+    color: var(--light-text);
 }
 
 .nav-item-right {
