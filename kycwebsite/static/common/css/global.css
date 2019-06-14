@@ -1,7 +1,11 @@
 :root {
-    --accent-text: #d78943;
+    --accent: #ff9a52;
+    --accent-transparent: rgba(255, 154, 82, 0.81);
+
+    --accent-text: #c36406;
     --black-text: rgba(0, 0, 0, 0.9);
     --light-text: rgba(0, 0, 0, 0.5);
+    --white-text: rgba(1, 1, 1, 0.9);
 }
 
 body {
@@ -10,6 +14,18 @@ body {
     font-weight: normal;
 }
 
+::selection {
+    background-color: var(--accent-transparent);
+    color: var(--white-text);
+}
+
+::-moz-selection {
+    background-color: var(--accent-transparent);
+    color: var(--white-text);
+}
+
 /* Change variables to confirm to iOS / macOS dark mode */
 @media (prefers-color-scheme: dark) {
+    :root {
+    }
 }

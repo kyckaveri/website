@@ -69,5 +69,6 @@
     #short-navbar-brand {
         display: inline-block;
         visibility: visible;
+        font-size: 20px;
     }
 }
