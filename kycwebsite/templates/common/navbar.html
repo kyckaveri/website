@@ -20,12 +20,14 @@
             crossorigin="anonymous"></script>
 
     <!-- Fonts -->
-    
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
 
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'common/css/global.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'common/css/navbar.css' %}"/>
+
+    {% block css %}
+    {% endblock %}
 
     <!--&lt;!&ndash; Favicon &ndash;&gt;-->
     <link rel="shortcut icon" type="image/png" href="{% static 'common/img/favicon.ico' %}"/>
@@ -69,8 +71,14 @@
         };
     </script>
 
+    {% block js %}
+    {% endblock %}
+
     <!-- Jquery -->
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    {% block jquery %}
+    {% endblock %}
 
     <title>KYC</title>
 
