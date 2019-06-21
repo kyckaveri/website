@@ -68,6 +68,10 @@
                 loginLink.className += " active";
                 loginLinkCollpased.className += " active";
             }
+
+            {% block onloadjs %}
+            {% endblock %}
+
         };
     </script>
 
@@ -128,7 +132,7 @@
     </div>
 </nav>
 
-{% block content %}
+{% block body %}
 {% endblock %}
 </body>
 

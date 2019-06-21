@@ -1,11 +1,15 @@
 :root {
-    --accent: #ff9a52;
+    /* Other Colors */
     --accent-transparent: rgba(255, 134, 52, 0.81);
 
+    /* Text Colors */
     --accent-text: #f56400;
     --black-text: rgba(0, 0, 0, 0.9);
     --light-text: rgba(0, 0, 0, 0.5);
     --white-text: rgba(1, 1, 1, 0.9);
+
+    /* Background Colors */
+    --navbar-bg: #f5f6f7;
 }
 
 body {

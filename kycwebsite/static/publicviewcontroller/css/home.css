@@ -1,0 +1,8 @@
+#carousel {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    /* TODO: Update the images to be a certain aspect ratio + lower this height amount */
+    height: 20em;
+}

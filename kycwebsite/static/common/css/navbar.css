@@ -5,7 +5,7 @@
 }
 
 .bg-light {
-    background-color: #f5f6f7 !important;
+    background-color: var(--navbar-bg) !important;
 }
 
 #long-navbar-brand {

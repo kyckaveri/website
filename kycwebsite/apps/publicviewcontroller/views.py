@@ -5,8 +5,8 @@ from django.contrib.staticfiles.storage import staticfiles_storage
 def home(request):
     context = {
         "page_name": "home",
-        "image_names": [staticfiles_storage.url("publicviewcontroller/img/home/home2.JPG"), staticfiles_storage.url("publicviewcontroller/img/home/home3.JPG")],
-        "image_iterable": range(2, 4),
+        "images": str([staticfiles_storage.url("publicviewcontroller/img/home/home2.JPG"), staticfiles_storage.url("publicviewcontroller/img/home/home3.JPG")]),
+        "first_image": staticfiles_storage.url("publicviewcontroller/img/home/home2.JPG"),
     }
     return render(request, 'publicviewcontroller/home.html', context=context)
 

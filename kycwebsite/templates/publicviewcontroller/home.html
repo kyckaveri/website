@@ -1,5 +1,54 @@
 {% extends 'common/navbar.html' %}
 {% load static %}
 
-{% block content %}
+{% block css %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'publicviewcontroller/css/home.css' %}"/>
+
+{% endblock %}
+
+{% block onloadjs %}
+var carousel = document.getElementById('carousel');
+carousel.style.backgroundImage = "url({{ first_image }})";
+{% endblock %}
+
+{% block js %}
+
+<script type="text/javascript">
+
+    function nextImage() {
+        alert("next");
+    }
+
+    function prevImage() {
+        alert("previous");
+    }
+
+</script>
+
+{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid">
+
+    <!--TODO: Remove the style in the html tags (they are there for positioning) -->
+
+    <!-- Image Carousel and Description -->
+    <div class="row">
+        <!-- Image Carousel -->
+        <div class="col-12 col-lg-6" style="background-color: rgb(0, 255, 0);">
+            <div id="carousel" style="background-color: rgb(255, 255, 0);">
+                <a id="prevImage" onclick="prevImage();">previosu</a>
+                <a id="nextImage" onclick="nextImage();">next</a>
+            </div>
+        </div>
+
+        <!-- Description -->
+        <div class="col-12 col-lg-6" style="background-color: rgb(0, 255, 255);">
+        </div>
+    </div>
+
+</div>
+
 {% endblock %}
