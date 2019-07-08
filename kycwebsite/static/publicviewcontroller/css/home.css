@@ -4,5 +4,25 @@
     background-position: center;
     width: 100%;
     /* TODO: Update the images to be a certain aspect ratio + lower this height amount */
-    height: 20em;
+    height: 13em;
+}
+
+#prevImage {
+    position: absolute;
+    bottom: 45%;
+    left: 60px;
+}
+
+#nextImage {
+    position: absolute;
+    bottom: 45%;
+    right: 60px;
+}
+
+#info {
+    padding-top: 20px;
+}
+
+.accent {
+    color: var(--accent-text);
 }
