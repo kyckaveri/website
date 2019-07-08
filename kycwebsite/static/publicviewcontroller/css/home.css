@@ -1,3 +1,7 @@
+#first-row {
+    background-color: var(--navbar-bg);
+}
+
 #carousel {
     background-size: contain;
     background-repeat: no-repeat;
@@ -25,4 +29,18 @@
 
 .accent {
     color: var(--accent-text);
+}
+
+#second-row {
+    background-color: white;
+}
+
+.sidebar-column {
+    padding: 20px;
+}
+
+.sidebar-div {
+    border-width: 10px;
+    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.15);
+    padding: 10px;
 }
