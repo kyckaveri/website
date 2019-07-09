@@ -3,12 +3,11 @@
 }
 
 #carousel {
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     width: 100%;
-    /* TODO: Update the images to be a certain aspect ratio + lower this height amount */
-    height: 13em;
+    height: 20em;
 }
 
 #prevImage {
@@ -24,7 +23,8 @@
 }
 
 #info {
-    padding-top: 20px;
+    margin-top: -5px;
+    padding-bottom: 5px;
 }
 
 .accent {
@@ -43,4 +43,16 @@
     border-width: 10px;
     box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.15);
     padding: 10px;
+}
+
+@media (max-width: 1000px) {
+    #carousel {
+        background-size: contain;
+        height: 13em;
+    }
+
+    #info {
+        margin-top: 0;
+        padding-top: 5px;
+    }
 }
