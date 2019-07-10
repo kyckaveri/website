@@ -45,6 +45,11 @@
     padding: 10px;
 }
 
+.sidebar-title {
+    text-align: center;
+    width: 100%;
+}
+
 @media (max-width: 1000px) {
     #carousel {
         background-size: contain;

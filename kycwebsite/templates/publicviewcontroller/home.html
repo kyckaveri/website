@@ -70,7 +70,11 @@ carousel.style.backgroundImage = "url({{ first_image }})";
         <!-- Member Information -->
         <div class="col-lg-3 sidebar-column">
             <div class="sidebar-div">
+                <div class="sidebar-title"> Members </div>
                 <hr/>
+                {% for position, member in member_info %}
+                {{ position }}: {{ member }}<br/>
+                {% endfor %}
             </div>
         </div>
 
@@ -81,6 +85,8 @@ carousel.style.backgroundImage = "url({{ first_image }})";
         <!-- Contact Information -->
         <div class="col-lg-3 sidebar-column">
             <div class="sidebar-div">
+                <div class="sidebar-title"> Contact Us </div>
+                <hr/>
             </div>
         </div>
     </div>
