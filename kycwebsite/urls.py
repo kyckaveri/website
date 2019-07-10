@@ -5,5 +5,6 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('kycwebsite.apps.publicviewcontroller.urls'))
+    url(r'^', include('kycwebsite.apps.publicviewcontroller.urls')),
+    url(r'^', include('kycwebsite.apps.privateviewcontroller.urls')),
 ]

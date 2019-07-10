@@ -1,0 +1,29 @@
+body {
+    background-color: var(--navbar-bg);
+    height: 100%;
+}
+
+#row {
+    margin-top: 25vh;
+    height: 40vh;
+}
+
+#title {
+    text-align: center;
+}
+
+#login-box {
+    font-family: default;
+    background-color: white;
+    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.15);
+    padding: 30px;
+}
+
+#links {
+    text-align: right;
+    width: 100%;
+}
+
+#links a {
+    color: #383838;
+}
