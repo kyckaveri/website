@@ -12,8 +12,11 @@ def home(request):
 
     projects_list = [project for project in Project.objects.all() if project.display]
     projects_list.sort()
-
     hours = reduce(lambda x, y: x + y, [project.hours * project.members_attended for project in projects_list])
+
+    login_name = 'Login'
+    if request.user.is_authenticated:
+        login_name = request.user
 
     context = {
         "page_name": "home",
@@ -24,7 +27,8 @@ def home(request):
         "member_expand": member_list[3:] if len(member_list) > 3 else None,
         "hours": hours,
         "project_info": [(projects_list[i].project_name, projects_list[i].date, projects_list[i].image_url) for i in
-                         range(3)],  # get only the first three projects
+                         range(3)],  # get only the first three projects,
+        "login_name": login_name
     }
     return render(request, 'publicviewcontroller/home.html', context=context)
 
