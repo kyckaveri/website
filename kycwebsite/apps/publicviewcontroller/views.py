@@ -1,8 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 from django.contrib.staticfiles.storage import staticfiles_storage
-from .models import KYCMember, Project
+
+from .models import KYCMember, Project, KYCYearSnapshot
 
 from functools import reduce
+from datetime import datetime
 
 
 def home(request):
@@ -34,14 +37,35 @@ def home(request):
 
 
 def members(request):
+    return HttpResponseRedirect(reverse('publicviewcontroller:members_by_year', kwargs={'year': datetime.now().year}))
+
+
+def members_by_year(request, year):
+    login_name = 'Login'
+    if request.user.is_authenticated:
+        login_name = request.user
+
+    snapshots = KYCYearSnapshot.objects.order_by('-year')
+    try:
+        snapshot = snapshots.get(year=year).get()
+    except KYCYearSnapshot.DoesNotExist:
+        return HttpResponseRedirect(reverse('publicviewcontroller:members'))
+
     context = {
         "page_name": "members",
+        "login_name": login_name
     }
+
     return render(request, 'publicviewcontroller/members.html', context=context)
 
 
 def projects(request):
+    login_name = 'Login'
+    if request.user.is_authenticated:
+        login_name = request.user
+
     context = {
         "page_name": "projects",
+        "login_name": login_name
     }
     return render(request, 'publicviewcontroller/projects.html', context=context)

@@ -61,6 +61,15 @@ class KYCYearSnapshot(models.Model):
     def __str__(self):
         return f"{self.year}"
 
+    def __lt__(self, other):
+        return self.year < other.year
+
+    def __eq__(self, other):
+        return self.year == other.year
+
+    def __gt__(self, other):
+        return self.year > other.year
+
 
 class Project(models.Model):
     """ A KYC Event """

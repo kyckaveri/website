@@ -43,25 +43,25 @@
             var loginLink = document.getElementById('login-link');
             var loginLinkCollpased = document.getElementById('collapsed-login-link');
 
-            if (page == "home") {
+            if (page === "home") {
                 homeLink.className += " active";
                 membersLink.className += " inactive";
                 projectsLink.className += " inactive";
                 loginLink.className += " inactive";
                 loginLinkCollpased.className += " inactive";
-            } else if (page == "members") {
+            } else if (page === "members") {
                 homeLink.className += " inactive";
                 membersLink.className += " active";
                 projectsLink.className += " inactive";
                 loginLink.className += " inactive";
                 loginLinkCollpased.className += " inactive";
-            } else if (page == "projects") {
+            } else if (page === "projects") {
                 homeLink.className += " inactive";
                 membersLink.className += " inactive";
                 projectsLink.className += " active";
                 loginLink.className += " inactive";
                 loginLinkCollpased.className += " inactive";
-            } else if (page == "login") {
+            } else if (page === "login") {
                 homeLink.className += " inactive";
                 membersLink.className += " inactive";
                 projectsLink.className += " inactive";
