@@ -50,6 +50,21 @@
     width: 100%;
 }
 
+#member-expansion {
+    display: none;
+}
+
+#toggle-members-list {
+    color: var(--accent-text);
+    font-size: 14px;
+}
+
+#toggle-members-list:hover {
+    color: var(--accent-bold);
+    text-decoration: underline;
+}
+
+
 @media (max-width: 1000px) {
     #carousel {
         background-size: contain;

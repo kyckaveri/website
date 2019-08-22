@@ -26,7 +26,7 @@ carousel.style.backgroundImage = "url({{ first_image }})";
         if (position == images.length) {
             position = 0;
         }
-        var carousel = document.getElementById('carousel');
+        let carousel = document.getElementById('carousel');
         carousel.style.backgroundImage = "url(" + images[position] + ")";
     }
 
@@ -35,8 +35,21 @@ carousel.style.backgroundImage = "url({{ first_image }})";
         if (position == -1) {
             position = images.length - 1;
         }
-                var carousel = document.getElementById('carousel');
+                let carousel = document.getElementById('carousel');
         carousel.style.backgroundImage = "url(" + images[position] + ")";
+    }
+
+    function toggleMembers() {
+        let expansion = document.getElementById('member-expansion');
+        let button = document.getElementById('toggle-members-list');
+
+        if (button.textContent === 'Show more') {
+            expansion.style.display = 'inherit';
+            button.textContent = 'Show less'
+        } else {
+            expansion.style.display = 'none';
+            button.textContent = 'Show more'
+        }
     }
 
 </script>
@@ -72,10 +85,19 @@ carousel.style.backgroundImage = "url({{ first_image }})";
             <div class="sidebar-div">
                 <div class="sidebar-title"> Members </div>
                 <hr/>
-                <!-- TODO: css for this sidebar -->
-                {% for position, member in member_info %}
-                {{ position }}: {{ member }}<br/>
-                {% endfor %}
+                <div>
+                    {% for position, member in member_summary %}
+                    {{ position }}: {{ member }}<br/>
+                    {% endfor %}
+                </div>
+                {% if has_expansion %}
+                <div id="member-expansion">
+                    {% for position, member in member_expand %}
+                    {{ position }}: {{ member }}<br/>
+                    {% endfor %}
+                </div>
+                <span onclick="toggleMembers()" id="toggle-members-list">Show more</span>
+                {% endif %}
             </div>
         </div>
 
