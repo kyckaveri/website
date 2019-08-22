@@ -58,6 +58,9 @@ class KYCYearSnapshot(models.Model):
     def get(self):
         return json.loads(self.content_json)["MEMBERS"]
 
+    def __str__(self):
+        return f"{self.year}"
+
 
 class Project(models.Model):
     """ A KYC Event """
