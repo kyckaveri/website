@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Position, KYCMember, Project, KYCYearSnapshot
+from .models import KYCMember, Project
 
 admin.site.register(KYCMember)
 admin.site.register(Project)
