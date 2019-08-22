@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render
 from django.contrib.staticfiles.storage import staticfiles_storage
 from .models import KYCMember, Project
 
