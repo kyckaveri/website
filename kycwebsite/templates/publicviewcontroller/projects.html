@@ -7,8 +7,27 @@
 
 {% block body %}
 
-<div class="container-fluid">
-    projects page
+<div class="container-fluid mobile-view">
+    <br/>
+    <h1 class="title">KYC Projects</h1>
+    <br/>
+    {% for project in all_projects %}
+    <div class="row">
+        <div class="col-10 ml-auto mr-auto project-card" style="background-image: url('{{project.IMAGE}}');">
+            <img src="{{project.IMAGE}}" class="placeholder-image"/>
+            <div class="bar name">
+                {{project.NAME}}
+            </div>
+            <div class="bar bottom-bar">
+                <div class="w-100">
+                    {{project.VOLUNTEERS}} volunteers on {{project.DATE}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    {% endfor %}
 </div>
 
 {% endblock %}

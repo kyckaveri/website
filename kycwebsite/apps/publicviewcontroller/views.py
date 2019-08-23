@@ -69,8 +69,32 @@ def projects(request):
     if request.user.is_authenticated:
         login_name = request.user
 
+    column_one = []
+    column_two = []
+    column_three = []
+    all_projects = []
+
+    for index, project in enumerate([p for p in Project.objects.all().order_by('-date') if p.display]):
+        project_obj = {
+            "NAME": project.project_name,
+            "IMAGE": project.image_url,
+            "VOLUNTEERS": project.members_attended,
+            "DATE": f"{project.date.month}/{project.date.day}/{str(project.date.year)[2:]}"
+        }
+        all_projects.append(project_obj)
+        if index % 3 == 0:
+            column_one.append(project_obj)
+        elif index % 3 == 1:
+            column_two.append(project_obj)
+        elif index % 3 == 2:
+            column_three.append(project_obj)
+
     context = {
         "page_name": "projects",
-        "login_name": login_name
+        "column_one": column_one,
+        "column_two": column_two,
+        "column_three": column_three,
+        "all_projects": all_projects,
+        "login_name": login_name,
     }
     return render(request, 'publicviewcontroller/projects.html', context=context)
