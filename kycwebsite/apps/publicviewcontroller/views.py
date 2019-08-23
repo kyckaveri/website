@@ -91,9 +91,7 @@ def projects(request):
 
     context = {
         "page_name": "projects",
-        "column_one": column_one,
-        "column_two": column_two,
-        "column_three": column_three,
+        "columns": [column_one, column_two, column_three],
         "all_projects": all_projects,
         "login_name": login_name,
     }

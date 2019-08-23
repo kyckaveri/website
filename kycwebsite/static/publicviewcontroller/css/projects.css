@@ -28,7 +28,6 @@
 .bottom-bar {
     width: 90%;
     bottom: 10px;
-    font-size: 14px;
 }
 
 .title {
@@ -42,5 +41,13 @@
 @media (max-width: 991px) {
     .mobile-view {
         display: inherit;
+    }
+
+    .bottom-bar {
+        font-size: 14px;
+    }
+
+    .desktop-view {
+        display: none;
     }
 }

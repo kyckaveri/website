@@ -54,10 +54,6 @@
     display: none;
 }
 
-.year-picker-mobile-select {
-
-}
-
 @media (max-width: 991px) {
     .year-picker-container {
         display: none;
