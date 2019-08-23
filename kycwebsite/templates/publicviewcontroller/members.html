@@ -1,6 +1,22 @@
 {% extends 'common/navbar.html' %}
 {% load static %}
 
+{% block onloadjs %}
+let yearItem = document.getElementById('{{year}}');
+yearItem.className += ' highlight';
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+    function changeYear() {
+        let select = document.getElementById("year-select");
+        let redirect = "{% url 'publicviewcontroller:members' %}";
+        let year = select.options[select.selectedIndex].text;
+        window.location = redirect + '/' + year;
+    }
+</script>
+{% endblock %}
+
 {% block css %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'publicviewcontroller/css/members.css' %}"/>
@@ -9,7 +25,59 @@
 {% block body %}
 
 <div class="container-fluid">
-    members page
+    <div class="row">
+        <div class="col-3 year-picker-background"></div>
+        <div class="col-3 year-picker-container">
+            <div class="year-picker">
+                <div class="sidebar-title">
+                    Currently viewing {{year}}'s KYC members <br/>
+                    Choose what year's roster to view below
+                </div>
+                {% for year in years %}
+                <a class="year-picker-link" href="{% url 'publicviewcontroller:members_by_year' year=year %}">
+                    <div class="year-item">
+                        <div class="card" id="{{year}}">
+                            {{year}}
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-12 col-lg-9 ml-auto member-view">
+            <div class="container-fluid">
+                <div class="row year-picker-mobile sidebar-title">
+                    Viewing {{year}}'s roster, you can choose the year to the below
+                </div>
+                <div class="row year-picker-mobile">
+                    <div class="ml-auto w-25">
+                        <select id="year-select" onchange="changeYear()">
+                            {% for year_list in years %}
+                            <option {% if year == year_list%}selected="selected"{% endif %} value="{{year_list}}">{{year_list}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    {% for item in snapshot %}
+                    {% for member in item.PEOPLE %}
+                    <div class="col-6 col-lg-4 w-100">
+                        <div class="card">
+                            {{item.POSITION}}
+                            <hr/>
+                            {{member}}
+                        </div>
+                        <br/>
+                    </div>
+                    <br/>
+                    <br/>
+                    {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

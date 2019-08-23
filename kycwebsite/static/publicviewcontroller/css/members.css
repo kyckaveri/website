@@ -1,0 +1,77 @@
+.year-picker-background {
+    background-color: var(--navbar-bg);
+    position: fixed;
+    bottom: 0;
+    top: 0;
+    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.15);
+}
+
+.year-picker {
+    margin-top: 25px;
+}
+
+.sidebar-title {
+    font-size: 15px;
+    color: grey;
+}
+
+.highlight {
+    color: var(--accent-bold);
+    font-size: 25px;
+}
+
+.year-picker-link {
+    color: #212529;
+}
+
+.year-picker-link:hover {
+    text-decoration: none;
+}
+
+.year-item {
+    padding: 12px 50px;
+}
+
+.year-item:hover {
+    color: var(--accent-text);
+}
+
+.member-view {
+    margin-top: 25px;
+}
+
+.card {
+    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    text-align: center;
+}
+
+.card:hover {
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.year-picker-mobile {
+    display: none;
+}
+
+.year-picker-mobile-select {
+
+}
+
+@media (max-width: 991px) {
+    .year-picker-container {
+        display: none;
+    }
+
+    .year-picker-background {
+        display: none;
+    }
+
+    .year-picker-mobile {
+        display: flex;
+    }
+
+    .card {
+        font-size: 18px;
+    }
+}

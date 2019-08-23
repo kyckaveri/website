@@ -41,8 +41,12 @@ class KYCYearSnapshot(models.Model):
             'MEMBERS': []
         }
 
-        for importance in range(-1, 5):
-            position = [str(position) for position in Position.objects.all() if position.importance == importance][0]
+        for importance in range(-1, 6):
+            try:
+                position = [str(position) for position in Position.objects.all() if position.importance == importance][0]
+            except IndexError:
+                continue
+
             relevant_members = [str(member) for member in KYCMember.objects.all() if
                                 member.position.importance == importance]
             if len(relevant_members) == 0:

@@ -46,6 +46,8 @@ def members_by_year(request, year):
         login_name = request.user
 
     snapshots = KYCYearSnapshot.objects.order_by('-year')
+    years = [snapshot.year for snapshot in snapshots]
+
     try:
         snapshot = snapshots.get(year=year).get()
     except KYCYearSnapshot.DoesNotExist:
@@ -53,6 +55,9 @@ def members_by_year(request, year):
 
     context = {
         "page_name": "members",
+        "snapshot": snapshot,
+        "years": years,
+        "year": year,
         "login_name": login_name
     }
 
