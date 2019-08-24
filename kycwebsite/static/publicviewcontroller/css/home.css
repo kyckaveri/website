@@ -63,6 +63,14 @@
     text-decoration: underline;
 }
 
+.hours-volunteered {
+    text-align: center;
+}
+
+#hours-value {
+    font-size: 25px;
+    color: var(--accent-text);
+}
 
 @media (max-width: 1000px) {
     #carousel {

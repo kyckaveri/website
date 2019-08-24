@@ -4,11 +4,14 @@
 {% block css %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'publicviewcontroller/css/home.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'publicviewcontroller/css/projects.css' %}"/>
 {% endblock %}
 
 {% block onloadjs %}
 var carousel = document.getElementById('carousel');
 carousel.style.backgroundImage = "url({{ first_image }})";
+
+animateValue("hours-value", parseInt({{hours}}/2), {{hours}}, 500);
 {% endblock %}
 
 {% block js %}
@@ -47,6 +50,21 @@ carousel.style.backgroundImage = "url({{ first_image }})";
             expansion.style.display = 'none';
             button.textContent = 'Show more'
         }
+    }
+
+    function animateValue(id, start, end, duration) {
+        let range = end - start;
+        let current = start;
+        let increment = end > start? 1 : -1;
+        let stepTime = Math.abs(Math.floor(duration / range));
+        let obj = document.getElementById(id);
+        let timer = setInterval(function() {
+            current += increment;
+            obj.innerHTML = current;
+            if (current === end) {
+                clearInterval(timer);
+            }
+        }, stepTime);
     }
 
 </script>
@@ -99,8 +117,62 @@ carousel.style.backgroundImage = "url({{ first_image }})";
         </div>
 
         <!-- Recent Projects -->
-        <!-- TODO: design projects section -->
-        <div class="col-lg-6">
+        <br/>
+        <div class="col-lg-6 sidebar-column">
+            <div class="container-fluid">
+                <div class="row sidebar-div">
+                    <div class="col-12 hours-volunteered">
+                        <b><div id="hours-value">0</div></b>Hours Volunteered
+                    </div>
+                </div>
+                <br/>
+                <div class="row sidebar-div">
+                    <div class="col-12">
+                        <div class="sidebar-title"> Recent Projects </div>
+                        <hr/>
+                        <div class="container-fluid">
+                            <div class="row mobile-view">
+                            {% for project in projects %}
+                                <div class="col-12">
+                                    <div class="w-100 ml-auto mr-auto project-card" style="background-image: url('{{project.IMAGE}}');">
+                                        <img src="{{project.IMAGE}}" class="placeholder-image"/>
+                                        <div class="bar name">
+                                            {{project.NAME}}
+                                        </div>
+                                        <div class="bar bottom-bar">
+                                            <div class="w-100">
+                                                {{project.VOLUNTEERS}} volunteers on {{project.DATE}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                </div>
+                            {% endfor %}
+                            </div>
+                            <div class="row desktop-view">
+                            {% for column in columns %}
+                            <div class="col-6">
+                                {% for project in column %}
+                                <div class="w-100 ml-auto mr-auto project-card" style="background-image: url('{{project.IMAGE}}');">
+                                    <img src="{{project.IMAGE}}" class="placeholder-image"/>
+                                    <div class="bar name">
+                                        {{project.NAME}}
+                                    </div>
+                                    <div class="bar bottom-bar">
+                                        <div class="w-100">
+                                            {{project.VOLUNTEERS}} volunteers on {{project.DATE}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                {% endfor %}
+                            </div>
+                            {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Contact Information -->
