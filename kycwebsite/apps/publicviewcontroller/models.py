@@ -18,6 +18,7 @@ class KYCMember(models.Model):
     # TODO: deleting a kyc member throws an error when it shouldn't
     name = models.CharField(max_length=50)
     position = models.ForeignKey(Position, on_delete=models.PROTECT)
+    deleted = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -48,7 +49,7 @@ class KYCYearSnapshot(models.Model):
             except IndexError:
                 continue
 
-            relevant_members = [str(member) for member in KYCMember.objects.all() if
+            relevant_members = [str(member) for member in KYCMember.objects.all().filter(deleted=False) if
                                 member.position.importance == importance]
             if len(relevant_members) == 0:
                 continue
@@ -85,6 +86,7 @@ class Project(models.Model):
     members_attended = models.IntegerField(default=0)
     date = models.DateField('Event Date')
     image_url = models.CharField(max_length=2000)
+    deleted = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.project_name} - {self.date.month}/{self.date.day}/{self.date.year}"
@@ -105,6 +107,7 @@ class CarouselImage(models.Model):
     index = models.IntegerField(default=0)
     name = models.CharField(max_length=100)
     image_url = models.CharField(max_length=2000)
+    deleted = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.name)
