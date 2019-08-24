@@ -2,9 +2,8 @@
 {% load static %}
 
 {% block css %}
-
-<link rel="stylesheet" type="text/css" href="{% static 'publicviewcontroller/css/home.css' %}"/>
 <link rel="stylesheet" type="text/css" href="{% static 'publicviewcontroller/css/projects.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'publicviewcontroller/css/home.css' %}"/>
 {% endblock %}
 
 {% block onloadjs %}
@@ -180,6 +179,29 @@ animateValue("hours-value", parseInt({{hours}}/2), {{hours}}, 500);
             <div class="sidebar-div">
                 <div class="sidebar-title"> Contact Us </div>
                 <hr/>
+                <div class="container">
+                    <div class="row">
+                        <div class="ml-auto mr-auto">
+                            <a href="mailto:kyckaveri@gmail.com" target="_blank">
+                                <img src="{% static 'publicviewcontroller/img/mail.png' %}" class="icon"/>
+                            </a>
+                            <span class="contact-link">
+                                <a href="mailto:kyckaveri@gmail.com" target="_blank">Email us</a>
+                            </span>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="ml-auto mr-auto">
+                            <a href="#" target="_blank">
+                                <img src="{% static 'publicviewcontroller/img/facebook.png' %}" class="icon"/>
+                            </a>
+                            <span class="contact-link">
+                                <a href="#" target="_blank">Like us on Facebook</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

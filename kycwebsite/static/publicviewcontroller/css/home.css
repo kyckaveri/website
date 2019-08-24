@@ -72,6 +72,23 @@
     color: var(--accent-text);
 }
 
+.bottom-bar {
+    font-size: 14px;
+}
+
+.icon {
+    width: 40px;
+    height: 40px;
+}
+
+.contact-link {
+    padding-left: 10px;
+}
+
+.contact-link a {
+    color: var(--accent-text);
+}
+
 @media (max-width: 1000px) {
     #carousel {
         background-size: contain;
