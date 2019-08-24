@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse, HttpResponse
-from django.contrib.auth import authenticate, login as django_login
+from django.contrib.auth import authenticate, login as django_login, logout as django_logout
 
 
 def login(request):
@@ -30,8 +30,17 @@ def login_handler(request):
         return HttpResponseRedirect(reverse('privateviewcontroller:loginerror'))
 
 
+def logout_handler(request):
+    django_logout(request)
+    return HttpResponseRedirect(reverse('privateviewcontroller:login'))
+
+
 def admin_dashboard(request):
     if not request.user.is_superuser:
         return HttpResponseRedirect(reverse('publicviewcontroller:home'))
+
+    context = {
+
+    }
 
     return render(request, 'privateviewcontroller/dashboard.html')

@@ -1,0 +1,46 @@
+.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.bg-light {
+    background-color: var(--navbar-bg) !important;
+}
+
+.navbar {
+    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.15);
+}
+
+#long-navbar-brand {
+    display: inline-block;
+    visibility: visible;
+    font-size: 28px;
+}
+
+#short-navbar-brand {
+    display: none;
+    visibility: hidden;
+}
+
+.navbar-light .navbar-nav > .nav-link:hover, .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link:hover {
+    color: var(--black-text);
+}
+
+.navbar-light .navbar-nav .active > .nav-link:hover, .navbar-light .navbar-nav .nav-link.active:hover, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link:hover {
+    color: var(--light-text);
+}
+
+/* Kaveri Youth Committee Collapses */
+@media (max-width: 500px) {
+    #long-navbar-brand {
+        display: none;
+        visibility: hidden;
+    }
+
+    #short-navbar-brand {
+        display: inline-block;
+        visibility: visible;
+        font-size: 20px;
+    }
+}
