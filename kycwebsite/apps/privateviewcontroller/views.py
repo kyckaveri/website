@@ -1,6 +1,8 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse, HttpResponse
 from django.contrib.auth import authenticate, login as django_login, logout as django_logout
 
+from ..publicviewcontroller.models import Position, KYCMember
+
 
 def login(request):
     if request.user.is_authenticated:
@@ -35,12 +37,29 @@ def logout_handler(request):
     return HttpResponseRedirect(reverse('privateviewcontroller:login'))
 
 
-def admin_dashboard(request):
+def admin_dashboard(request, message=None):
     if not request.user.is_superuser:
         return HttpResponseRedirect(reverse('publicviewcontroller:home'))
 
     context = {
-
+        "positions": [position.position_name for position in Position.objects.all().order_by('importance')],
+        "message": message,
     }
 
-    return render(request, 'privateviewcontroller/dashboard.html')
+    return render(request, 'privateviewcontroller/dashboard.html', context=context)
+
+
+def add_member(request):
+    try:
+        name = request.POST["name"]
+        position_name = request.POST["position"]
+    except KeyError:
+        return HttpResponseRedirect(
+            reverse('privateviewcontroller:admindashboard', kwargs={"message": "Error creating new member"}))
+
+    position = Position.objects.filter(position_name=position_name).first()
+    new_member = KYCMember(name=name, position=position)
+    new_member.save()
+
+    return HttpResponseRedirect(
+        reverse('privateviewcontroller:admindashboard', kwargs={"message": f"Created new member: {name}"}))

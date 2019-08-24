@@ -42,12 +42,18 @@ def members(request):
 
 def members_by_year(request, year):
     snapshots = KYCYearSnapshot.objects.order_by('-year')
-    years = [snapshot.year for snapshot in snapshots]
+    years = [datetime.now().year]
+    years.extend([snapshot.year for snapshot in snapshots])
 
     try:
         snapshot = snapshots.get(year=year).get()
     except KYCYearSnapshot.DoesNotExist:
-        return HttpResponseRedirect(reverse('publicviewcontroller:members'))
+        if year == datetime.now().year:
+            snapshot = KYCYearSnapshot()
+            snapshot.set()
+            snapshot = snapshot.get()
+        else:
+            return HttpResponseRedirect(reverse('publicviewcontroller:members'))
 
     context = get_context(request, "members")
     context["snapshot"] = snapshot

@@ -1,16 +1,45 @@
 {% extends 'privateviewcontroller/navbar.html' %}
 {% load static %}
 
+
 {% block css %}
 <link rel="stylesheet" type="text/css" href="{% static 'privateviewcontroller/css/dashboard.css' %}"/>
 {% endblock %}
 
 {% block body %}
-
-<br/>
-<br/>
-
 <div class="container-fluid">
+    <br/>
+    {% if message %}
+    <div class="row">
+        <br/>
+        <div class="message">
+            {{message}}
+        </div>
+    </div>
+    {% endif %}
+    <br/>
+    <div class="row">
+        <div class="col-4">
+            <div class="card">
+                Add Member
+                <hr/>
+                <form action="{% url 'privateviewcontroller:addmember' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input class="form-control" name="name" placeholder="Member Name"/>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" name="position">
+                            {% for position in positions %}
+                            <option>{{position}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-light">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
