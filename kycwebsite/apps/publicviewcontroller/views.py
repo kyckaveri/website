@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.staticfiles.storage import staticfiles_storage
 
-from .models import KYCMember, Project, KYCYearSnapshot
+from .models import KYCMember, Project, KYCYearSnapshot, CarouselImage
 from .utils import get_project_obj, get_context
 
 from functools import reduce
@@ -17,10 +17,12 @@ def home(request):
     projects_list = [project for project in Project.objects.all().order_by('-date') if project.display]
     hours = reduce(lambda x, y: x + y, [project.hours * project.members_attended for project in projects_list])
 
+    images = [image.image_url for image in CarouselImage.objects.all().order_by('-index')]
+
     context = get_context(request, 'home')
 
-    context["first_image"] = staticfiles_storage.url("publicviewcontroller/img/home/home1.JPG")
-    context["images"] = [staticfiles_storage.url(f"publicviewcontroller/img/home/home{x + 1}.JPG") for x in range(2)]
+    context["first_image"] = images[0]
+    context["images"] = images
 
     context["has_expansion"] = len(member_list) > 3
     context["member_summary"] = member_list[:3] if len(member_list) > 3 else member_list

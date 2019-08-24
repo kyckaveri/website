@@ -43,7 +43,8 @@ class KYCYearSnapshot(models.Model):
 
         for importance in range(-1, 6):
             try:
-                position = [str(position) for position in Position.objects.all() if position.importance == importance][0]
+                position = [str(position) for position in Position.objects.all() if position.importance == importance][
+                    0]
             except IndexError:
                 continue
 
@@ -96,3 +97,14 @@ class Project(models.Model):
 
     def __gt__(self, other):
         return self.date > other.date
+
+
+class CarouselImage(models.Model):
+    """ An Image for the Carousel on the Home Page """
+
+    index = models.IntegerField(default=0)
+    name = models.CharField(max_length=100)
+    image_url = models.CharField(max_length=2000)
+
+    def __str__(self):
+        return str(self.name)
