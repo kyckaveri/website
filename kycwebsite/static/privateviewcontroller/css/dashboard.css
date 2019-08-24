@@ -13,3 +13,30 @@
 .card:hover {
     box-shadow: 5px 5px 40px rgba(0, 0, 0, 0.4);
 }
+
+.mini-card-container {
+    padding: 10px;
+}
+
+.mini-card {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    padding: 20px 10px;
+    text-align: center;
+    border-width: 0;
+}
+
+.mini-card:hover {
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+.member-name {
+    font-size: 16px;
+}
+
+.member-link {
+    font-size: 14px;
+}
+
+.member-link a {
+    color: var(--accent-text);
+}

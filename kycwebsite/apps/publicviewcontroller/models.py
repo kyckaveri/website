@@ -15,7 +15,6 @@ class Position(models.Model):
 
 
 class KYCMember(models.Model):
-    # TODO: deleting a kyc member throws an error when it shouldn't
     name = models.CharField(max_length=50)
     position = models.ForeignKey(Position, on_delete=models.PROTECT)
     deleted = models.BooleanField(default=False)

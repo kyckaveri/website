@@ -10,4 +10,5 @@ urlpatterns = [
     path(r'admin-dashboard/', views.admin_dashboard, name="admindashboard"),
     path(r'admin-dashboard/<str:message>/', views.admin_dashboard, name="admindashboard"),
     path(r'admin-dashboard/add/member/', views.add_member, name="addmember"),
+    path(r'admin-dashboard/remove/member/<int:index>', views.remove_member, name="removemember"),
 ]

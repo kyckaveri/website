@@ -43,6 +43,8 @@ def admin_dashboard(request, message=None):
 
     context = {
         "positions": [position.position_name for position in Position.objects.all().order_by('importance')],
+        "members": [{"INDEX": index, "MEMBER_NAME": member.name} for index, member in
+                    enumerate([m for m in KYCMember.objects.all().filter(deleted=False)])],
         "message": message,
     }
 
@@ -63,3 +65,16 @@ def add_member(request):
 
     return HttpResponseRedirect(
         reverse('privateviewcontroller:admindashboard', kwargs={"message": f"Created new member: {name}"}))
+
+
+def remove_member(request, index):
+    try:
+        member = [member for member in KYCMember.objects.all().filter(deleted=False)][index]
+    except IndexError:
+        return HttpResponseRedirect(
+            reverse('privateviewcontroller:admindashboard', kwargs={"message": "Error removing member"}))
+
+    member.deleted = True
+    member.save()
+    return HttpResponseRedirect(
+        reverse('privateviewcontroller:admindashboard', kwargs={"message": f"Removed member: {member.name}"}))

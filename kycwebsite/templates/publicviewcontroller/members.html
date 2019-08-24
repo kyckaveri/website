@@ -51,7 +51,7 @@ yearItem.className += ' highlight';
                 </div>
                 <div class="row year-picker-mobile">
                     <div class="ml-auto w-25">
-                        <select id="year-select" onchange="changeYear()">
+                        <select class="form-control" id="year-select" onchange="changeYear()">
                             {% for year_list in years %}
                             <option {% if year == year_list%}selected="selected"{% endif %} value="{{year_list}}">{{year_list}}</option>
                             {% endfor %}
