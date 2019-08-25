@@ -24,7 +24,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'common/css/global.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'common/css/navbar.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'publicviewcontroller/css/navbar.css' %}"/>
 
     {% block css %}
     {% endblock %}
@@ -125,7 +125,6 @@
                     <a class="nav-link" href="{% url 'privateviewcontroller:login' %}">{{login_name}}</a>
                 </li>
                 <li class="nav-item nav-item-right" id="login-link">
-                    <!-- TODO: Fix admin url -->
                     <a class="nav-link" href="{% url 'privateviewcontroller:login' %}">{{login_name}}</a>
                 </li>
             </ul>
