@@ -10,11 +10,13 @@ from datetime import datetime
 
 
 def home(request):
-    members_list = [member for member in KYCMember.objects.all().filter(deleted=False) if member.position.importance < 5]
+    members_list = [member for member in KYCMember.objects.all().filter(deleted=False) if
+                    member.position.importance < 5]
     members_list.sort()
     member_list = [(member.position.position_name, member.name) for member in members_list]
 
-    projects_list = [project for project in Project.objects.all().order_by('-date') if project.display]
+    projects_list = [project for project in Project.objects.all().filter(deleted=False).order_by('-date') if
+                     project.display]
     hours = reduce(lambda x, y: x + y, [project.hours * project.members_attended for project in projects_list])
 
     images = [image.image_url for image in CarouselImage.objects.all().order_by('-index')]
@@ -69,7 +71,8 @@ def projects(request):
     column_three = []
     all_projects = []
 
-    for index, project in enumerate([p for p in Project.objects.all().order_by('-date') if p.display]):
+    for index, project in enumerate(
+            [p for p in Project.objects.all().filter(deleted=False).order_by('-date') if p.display]):
         project_obj = get_project_obj(project)
         all_projects.append(project_obj)
         if index % 3 == 0:

@@ -208,7 +208,8 @@ def edit_project(request, index=None):
             project.save()
         except:
             return HttpResponseRedirect(
-                reverse('privateviewcontroller:admindashboard', kwargs={"message": "Error editing project (211 Error)"}))
+                reverse('privateviewcontroller:admindashboard',
+                        kwargs={"message": "Error editing project (211 Error)"}))
 
         return HttpResponseRedirect(
             reverse('privateviewcontroller:admindashboard', kwargs={"message": f"Edited project: {project_name}"}))
@@ -233,3 +234,21 @@ def edit_project(request, index=None):
         "index": index
     }
     return render(request, 'privateviewcontroller/editproject.html', context=context)
+
+
+def remove_project(request, index):
+    if not request.user.is_superuser:
+        return HttpResponseRedirect(reverse('publicviewcontroller:home'))
+
+    try:
+        projects = [p for p in Project.objects.all().filter(deleted=False)]
+        projects.sort()
+        project = projects[index]
+    except IndexError:
+        return HttpResponseRedirect(
+            reverse('privateviewcontroller:admindashboard', kwargs={"message": "Error removing project"}))
+
+    project.deleted = True
+    project.save()
+    return HttpResponseRedirect(
+        reverse('privateviewcontroller:admindashboard', kwargs={"message": f"Removed project: {project.project_name}"}))
