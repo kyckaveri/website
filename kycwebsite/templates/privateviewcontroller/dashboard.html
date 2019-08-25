@@ -19,7 +19,7 @@
     {% endif %}
     <br/>
     <div class="row">
-        <div class="col-4">
+        <div class="col-12 col-lg-4">
             <div class="card">
                 Add Member
                 <hr/>
@@ -52,6 +52,61 @@
                                 </div>
                                 <div class="col-4 member-link">
                                     <a href="{% url 'privateviewcontroller:editmember' index=member_info.INDEX %}">Edit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-12 col-lg-4">
+            <div class="card">
+                Add Project
+                <hr/>
+                <form action="{% url 'privateviewcontroller:addproject' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input class="form-control" name="project_name" placeholder="Project Name"/>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" name="members_attended" placeholder="Volunteers (must be integer)"/>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" name="hours" placeholder="Hours (0 - 24 non inclusive)"/>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" name="image_url" placeholder="Image (url)"/>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="display">
+                            <label class="form-check-label small-label">
+                                Check to display project to public
+                            </label>
+                        </div>
+                        <br/>
+                        <label class="small-label">Date of Project</label>
+                        <input class="form-control" name="date" type="date"/>
+                    </div>
+                    <br/>
+                    <button type="submit" class="btn btn-light">Add</button>
+                </form>
+            </div>
+            <br/><br/>
+            <div class="card">
+                Edit Projects
+                <hr/>
+                {% for project_info in projects %}
+                <div class="mini-card-container">
+                    <div class="mini-card">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-8 member-name">
+                                    {{project_info.NAME}} ({{project_info.DATE}})
+                                </div>
+                                <div class="col-4 member-link">
+                                    <a href="{% url 'privateviewcontroller:editproject' index=project_info.INDEX %}">Edit</a>
                                 </div>
                             </div>
                         </div>

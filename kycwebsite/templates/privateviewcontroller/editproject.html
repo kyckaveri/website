@@ -1,0 +1,59 @@
+{% extends 'privateviewcontroller/navbar.html' %}
+{% load static %}
+
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'privateviewcontroller/css/editmember.css' %}"/>
+{% endblock %}
+
+{% block body %}
+<br/>
+<br/>
+<br/>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-8 ml-auto mr-auto">
+            <div class="card">
+                Edit project info
+                <hr/>
+                <form action="{% url 'privateviewcontroller:editproject' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input class="form-control" name="project_name" placeholder="Project Name"
+                               value="{{project.project_name}}"/>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" name="members_attended" placeholder="Volunteers (must be integer)"
+                               value="{{project.members_attended}}"/>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" name="hours" placeholder="Hours (0 - 24 non inclusive)"
+                               value="{{project.hours}}"/>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" name="image_url" placeholder="Image (url)" value="{{project.image_url}}"/>
+                        <input class="form-control d-none" name="original" placeholder="Image (url)" value="{{project.image_url}}"/>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="display" {% if project.display %}checked="checked"{% endif %}>
+                            <label class="form-check-label small-label">
+                                Check to display project to public
+                            </label>
+                        </div>
+                        <br/>
+                        <label class="small-label">Date of Project</label>
+                        <input class="form-control" name="date" type="date" value="{{project.date}}"/>
+                    </div>
+                    <br/>
+                    <button type="submit" class="btn btn-light">Save</button>
+                </form>
+                <a href="{% url 'privateviewcontroller:removemember' index=index %}">
+                    <button class="btn btn-danger remove">Remove</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -32,3 +32,7 @@
 .member-link a {
     color: var(--accent-text);
 }
+
+.small-label {
+    font-size: 16px;
+}

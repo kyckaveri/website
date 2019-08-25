@@ -1,0 +1,14 @@
+.card {
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
+    padding: 40px;
+    text-align: center;
+    border-width: 0;
+}
+
+.card:hover {
+    box-shadow: 5px 5px 40px rgba(0, 0, 0, 0.4);
+}
+
+.remove {
+    margin-top: 40px;
+}
