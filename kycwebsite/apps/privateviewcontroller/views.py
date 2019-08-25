@@ -54,6 +54,9 @@ def admin_dashboard(request, message=None):
 
 
 def add_member(request):
+    if not request.user.is_superuser:
+        return HttpResponseRedirect(reverse('publicviewcontroller:home'))
+
     try:
         name = request.POST["name"]
         position_name = request.POST["position"]
@@ -70,6 +73,9 @@ def add_member(request):
 
 
 def remove_member(request, index):
+    if not request.user.is_superuser:
+        return HttpResponseRedirect(reverse('publicviewcontroller:home'))
+
     try:
         members = [m for m in KYCMember.objects.all().filter(deleted=False)]
         members.sort()
@@ -85,6 +91,9 @@ def remove_member(request, index):
 
 
 def edit_member(request, index=None):
+    if not request.user.is_superuser:
+        return HttpResponseRedirect(reverse('publicviewcontroller:home'))
+
     if index is None:
         try:
             name = request.POST["name"]
@@ -121,6 +130,7 @@ def edit_member(request, index=None):
             "name": member.name,
             "position": member.position.position_name
         },
-        "positions": [position.position_name for position in Position.objects.all().order_by('importance')]
+        "positions": [position.position_name for position in Position.objects.all().order_by('importance')],
+        "index": index
     }
     return render(request, 'privateviewcontroller/editmember.html', context=context)

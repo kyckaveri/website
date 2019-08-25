@@ -47,14 +47,11 @@
                     <div class="mini-card">
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="col-5 member-name">
+                                <div class="col-8 member-name">
                                     {{member_info.MEMBER_NAME}}
                                 </div>
-                                <div class="col-3 member-link">
-                                    <a href="{% url 'privateviewcontroller:editmember' index=member_info.INDEX %}">Edit</a>
-                                </div>
                                 <div class="col-4 member-link">
-                                    <a href="{% url 'privateviewcontroller:removemember' index=member_info.INDEX %}">Remove</a>
+                                    <a href="{% url 'privateviewcontroller:editmember' index=member_info.INDEX %}">Edit</a>
                                 </div>
                             </div>
                         </div>
