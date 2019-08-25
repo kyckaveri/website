@@ -45,7 +45,11 @@ def members(request):
 def members_by_year(request, year):
     snapshots = KYCYearSnapshot.objects.order_by('-year')
     years = [datetime.now().year]
-    years.extend([snapshot.year for snapshot in snapshots])
+    extension = [snapshot.year for snapshot in snapshots]
+    if datetime.now().year in extension:
+        years = extension
+    else:
+        years.extend(extension)
 
     try:
         snapshot = snapshots.get(year=year).get()

@@ -17,4 +17,5 @@ urlpatterns = [
     path(r'admin-dashboard/edit/project/', views.edit_project, name="editproject"),
     path(r'admin-dashboard/edit/project/<int:index>', views.edit_project, name="editproject"),
     path(r'admin-dashboard/remove/project/<int:index>', views.remove_project, name="removeproject"),
+    path(r'admin-dashboard/add/snapshot', views.create_snapshot, name="createsnapshot"),
 ]

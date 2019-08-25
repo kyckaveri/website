@@ -2,8 +2,9 @@ from django.shortcuts import render, HttpResponseRedirect, reverse, HttpResponse
 from django.contrib.auth import authenticate, login as django_login, logout as django_logout
 from dateutil.parser import parse
 
-from ..publicviewcontroller.models import Position, KYCMember, Project
+from ..publicviewcontroller.models import Position, KYCMember, Project, KYCYearSnapshot
 
+from datetime import datetime
 
 def login(request):
     if request.user.is_authenticated:
@@ -252,3 +253,20 @@ def remove_project(request, index):
     project.save()
     return HttpResponseRedirect(
         reverse('privateviewcontroller:admindashboard', kwargs={"message": f"Removed project: {project.project_name}"}))
+
+
+def create_snapshot(request):
+    if not request.user.is_superuser:
+        return HttpResponseRedirect(reverse('publicviewcontroller:home'))
+
+    snapshot = KYCYearSnapshot(year=datetime.now().year)
+    snapshot.set()
+    snapshot.save()
+
+    for member in KYCMember.objects.all().filter(deleted=False):
+        member.deleted = True
+        member.save()
+
+    return HttpResponseRedirect(
+        reverse('privateviewcontroller:admindashboard', kwargs={"message": f"Created snapshot, please add all new members"}))
+
