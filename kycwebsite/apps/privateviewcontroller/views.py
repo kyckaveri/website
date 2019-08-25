@@ -46,7 +46,7 @@ def admin_dashboard(request, message=None):
     members.sort()
 
     projects = [p for p in Project.objects.all().filter(deleted=False)]
-    projects.sort()
+    projects.sort(reverse=True)
 
     context = {
         "positions": [position.position_name for position in Position.objects.all().order_by('importance')],
@@ -216,7 +216,7 @@ def edit_project(request, index=None):
 
     try:
         projects = [p for p in Project.objects.all().filter(deleted=False)]
-        projects.sort()
+        projects.sort(reverse=True)
         project = projects[index]
     except IndexError:
         return HttpResponseRedirect(
@@ -242,7 +242,7 @@ def remove_project(request, index):
 
     try:
         projects = [p for p in Project.objects.all().filter(deleted=False)]
-        projects.sort()
+        projects.sort(reverse=True)
         project = projects[index]
     except IndexError:
         return HttpResponseRedirect(
