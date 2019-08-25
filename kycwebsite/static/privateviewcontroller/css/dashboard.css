@@ -45,3 +45,7 @@
 .card-warning a {
     color: white !important;
 }
+
+.black-link a {
+    color: #212529 !important;
+}

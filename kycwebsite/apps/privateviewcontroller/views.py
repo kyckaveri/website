@@ -299,3 +299,15 @@ def add_image(request):
 
     return HttpResponseRedirect(
         reverse('privateviewcontroller:admindashboard', kwargs={"message": f"Added new image: {name}"}))
+
+
+def remove_image(request, index):
+    if not request.user.is_superuser:
+        return HttpResponseRedirect(reverse('publicviewcontroller:home'))
+
+    image = CarouselImage.objects.all().filter(deleted=False).filter(index=index).first()
+    image.deleted = True
+    image.save()
+
+    return HttpResponseRedirect(
+        reverse('privateviewcontroller:admindashboard', kwargs={"message": f"Removed image: {image.name}"}))

@@ -167,6 +167,29 @@
                     <button type="submit" class="btn btn-light">Add</button>
                 </form>
             </div>
+            <br/>
+            <div class="card">
+                Image Order / Remove Image
+                <hr/>
+                {% for image_info in images %}
+                <div class="mini-card-container">
+                    <div class="mini-card">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-7 member-name black-link">
+                                    <a href="{{image_info.image_url}}" target="_blank">
+                                        {{image_info.name}}
+                                    </a>
+                                </div>
+                                <div class="col-5 member-link">
+                                    <a href="{% url 'privateviewcontroller:removeimage' index=image_info.index %}">Remove</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>
