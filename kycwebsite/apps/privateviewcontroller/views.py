@@ -41,10 +41,12 @@ def admin_dashboard(request, message=None):
     if not request.user.is_superuser:
         return HttpResponseRedirect(reverse('publicviewcontroller:home'))
 
+    members = [m for m in KYCMember.objects.all().filter(deleted=False)]
+    members.sort()
+
     context = {
         "positions": [position.position_name for position in Position.objects.all().order_by('importance')],
-        "members": [{"INDEX": index, "MEMBER_NAME": member.name} for index, member in
-                    enumerate([m for m in KYCMember.objects.all().filter(deleted=False)])],
+        "members": [{"INDEX": index, "MEMBER_NAME": member.name} for index, member in enumerate(members)],
         "message": message,
     }
 
@@ -69,7 +71,9 @@ def add_member(request):
 
 def remove_member(request, index):
     try:
-        member = [member for member in KYCMember.objects.all().filter(deleted=False)][index]
+        members = [m for m in KYCMember.objects.all().filter(deleted=False)]
+        members.sort()
+        member = members[index]
     except IndexError:
         return HttpResponseRedirect(
             reverse('privateviewcontroller:admindashboard', kwargs={"message": "Error removing member"}))
@@ -78,3 +82,45 @@ def remove_member(request, index):
     member.save()
     return HttpResponseRedirect(
         reverse('privateviewcontroller:admindashboard', kwargs={"message": f"Removed member: {member.name}"}))
+
+
+def edit_member(request, index=None):
+    if index is None:
+        try:
+            name = request.POST["name"]
+            original = request.POST["original_name"]
+            position_name = request.POST["member_position"]
+        except KeyError:
+            return HttpResponseRedirect(
+                reverse('privateviewcontroller:admindashboard', kwargs={"message": "Error editing member"}))
+
+        member = KYCMember.objects.all().filter(deleted=False).filter(name=original).first()
+        position = Position.objects.all().filter(position_name=position_name).first()
+
+        try:
+            member.name = name
+            member.position = position
+            member.save()
+        except:
+            return HttpResponseRedirect(
+                reverse('privateviewcontroller:admindashboard', kwargs={"message": "Error editing member"}))
+
+        return HttpResponseRedirect(
+            reverse('privateviewcontroller:admindashboard', kwargs={"message": f"Edited member: {member.name}"}))
+
+    try:
+        members = [m for m in KYCMember.objects.all().filter(deleted=False)]
+        members.sort()
+        member = members[index]
+    except IndexError:
+        return HttpResponseRedirect(
+            reverse('privateviewcontroller:admindashboard', kwargs={"message": "Error editing member"}))
+
+    context = {
+        "member": {
+            "name": member.name,
+            "position": member.position.position_name
+        },
+        "positions": [position.position_name for position in Position.objects.all().order_by('importance')]
+    }
+    return render(request, 'privateviewcontroller/editmember.html', context=context)

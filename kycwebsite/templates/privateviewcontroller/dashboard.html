@@ -51,10 +51,10 @@
                                     {{member_info.MEMBER_NAME}}
                                 </div>
                                 <div class="col-3 member-link">
-                                    Edit
+                                    <a href="{% url 'privateviewcontroller:editmember' index=member_info.INDEX %}">Edit</a>
                                 </div>
                                 <div class="col-4 member-link">
-                                    <a href="{% url 'privateviewcontroller:removemember' index=member_info.INDEX%}">Remove</a>
+                                    <a href="{% url 'privateviewcontroller:removemember' index=member_info.INDEX %}">Remove</a>
                                 </div>
                             </div>
                         </div>

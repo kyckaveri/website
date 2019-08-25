@@ -11,4 +11,6 @@ urlpatterns = [
     path(r'admin-dashboard/<str:message>/', views.admin_dashboard, name="admindashboard"),
     path(r'admin-dashboard/add/member/', views.add_member, name="addmember"),
     path(r'admin-dashboard/remove/member/<int:index>', views.remove_member, name="removemember"),
+    path(r'admin-dashboard/edit/member/', views.edit_member, name="editmember"),
+    path(r'admin-dashboard/edit/member/<int:index>', views.edit_member, name="editmember"),
 ]

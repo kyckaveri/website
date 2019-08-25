@@ -1,0 +1,38 @@
+{% extends 'privateviewcontroller/navbar.html' %}
+{% load static %}
+
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'privateviewcontroller/css/editmember.css' %}"/>
+{% endblock %}
+
+{% block body %}
+<br/>
+<br/>
+<br/>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-8 ml-auto mr-auto">
+            <div class="card">
+                <form action="{% url 'privateviewcontroller:editmember' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input class="form-control" name="name" placeholder="Member Name" value="{{member.name}}"/>
+                        <input class="form-control d-none" name="original_name" placeholder="" value="{{member.name}}"/>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" name="member_position">
+                            {% for position in positions %}
+                            <option {% if position == member.position%}selected="selected" {% endif %}>{{position}}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-light">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
