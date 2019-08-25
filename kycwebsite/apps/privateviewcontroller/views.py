@@ -2,9 +2,10 @@ from django.shortcuts import render, HttpResponseRedirect, reverse, HttpResponse
 from django.contrib.auth import authenticate, login as django_login, logout as django_logout
 from dateutil.parser import parse
 
-from ..publicviewcontroller.models import Position, KYCMember, Project, KYCYearSnapshot
+from ..publicviewcontroller.models import Position, KYCMember, Project, KYCYearSnapshot, CarouselImage
 
 from datetime import datetime
+
 
 def login(request):
     if request.user.is_authenticated:
@@ -49,6 +50,12 @@ def admin_dashboard(request, message=None):
     projects = [p for p in Project.objects.all().filter(deleted=False)]
     projects.sort(reverse=True)
 
+    images = [{
+        "name": i.name,
+        "image_url": i.image_url,
+        "index": i.index
+    } for i in CarouselImage.objects.all().filter(deleted=False).order_by('index')]
+
     context = {
         "positions": [position.position_name for position in Position.objects.all().order_by('importance')],
         "members": [{"INDEX": index, "MEMBER_NAME": member.name} for index, member in enumerate(members)],
@@ -57,6 +64,7 @@ def admin_dashboard(request, message=None):
             "NAME": project.project_name,
             "DATE": f"{project.date.month}/{project.date.day}/{project.date.year}"
         } for index, project in enumerate(projects)],
+        "images": images,
         "message": message,
     }
 
@@ -268,5 +276,26 @@ def create_snapshot(request):
         member.save()
 
     return HttpResponseRedirect(
-        reverse('privateviewcontroller:admindashboard', kwargs={"message": f"Created snapshot, please add all new members"}))
+        reverse('privateviewcontroller:admindashboard',
+                kwargs={"message": f"Created snapshot, please add all new members"}))
 
+
+def add_image(request):
+    if not request.user.is_superuser:
+        return HttpResponseRedirect(reverse('publicviewcontroller:home'))
+
+    try:
+        name = request.POST["name"]
+        image_url = request.POST["image_url"]
+    except KeyError:
+        return HttpResponseRedirect(
+            reverse('privateviewcontroller:admindashboard', kwargs={"message": "Error adding new image"}))
+
+    index = CarouselImage.objects.all().filter(deleted=False).order_by('index').last().index
+    index += 1
+
+    new_image = CarouselImage(name=name, image_url=image_url, index=index)
+    new_image.save()
+
+    return HttpResponseRedirect(
+        reverse('privateviewcontroller:admindashboard', kwargs={"message": f"Added new image: {name}"}))

@@ -19,7 +19,7 @@ def home(request):
                      project.display]
     hours = reduce(lambda x, y: x + y, [project.hours * project.members_attended for project in projects_list])
 
-    images = [image.image_url for image in CarouselImage.objects.all().order_by('-index')]
+    images = [image.image_url for image in CarouselImage.objects.all().filter(deleted=False).order_by('index')]
 
     context = get_context(request, 'home')
 
