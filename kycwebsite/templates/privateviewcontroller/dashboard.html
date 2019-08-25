@@ -1,6 +1,19 @@
 {% extends 'privateviewcontroller/navbar.html' %}
 {% load static %}
 
+{% block js %}
+<script type="text/javascript">
+    function showWarning() {
+        let warningDiv = document.getElementById('snapshot-warning');
+        warningDiv.className = '';
+    }
+
+    function cancelWarning() {
+        let warningDiv = document.getElementById('snapshot-warning');
+        warningDiv.className = 'd-none';
+    }
+</script>
+{% endblock %}
 
 {% block css %}
 <link rel="stylesheet" type="text/css" href="{% static 'privateviewcontroller/css/dashboard.css' %}"/>
@@ -61,6 +74,7 @@
             </div>
         </div>
         <div class="col-12 col-lg-4">
+            <br/>
             <div class="card">
                 Add Project
                 <hr/>
@@ -113,6 +127,35 @@
                     </div>
                 </div>
                 {% endfor %}
+            </div>
+            <br/>
+        </div>
+        <div class="col-12 col-lg-4">
+            <div class="card">
+                Create Snapshot
+                <hr/>
+                <label class="small-label">This should only be used at the end of each year.</label>
+                <a onclick="showWarning();">Create snapshot</a>
+            </div>
+            <div class="d-none" id="snapshot-warning">
+                <br/>
+                <div class="card card-warning">
+                    <div><b>
+                        This deletes all members from the database and creates a snapshot of the
+                        year (the snapshot can be viewed in the member's page).
+                    </b></div>
+                    <div>
+                        <br/>
+                        <a onclick="cancelWarning();">Click here to cancel</a>
+                        <hr/>
+                        <a>Click here to confirm</a>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="card">
+                Image Carousel
+                <hr/>
             </div>
         </div>
     </div>

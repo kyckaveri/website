@@ -29,10 +29,19 @@
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
 }
 
-.member-link a {
-    color: var(--accent-text);
+.card a {
+    color: var(--accent-text) !important;
 }
 
 .small-label {
     font-size: 16px;
+}
+
+.card-warning {
+    background-color: #ff4023;
+    color: white;
+}
+
+.card-warning a {
+    color: white !important;
 }
