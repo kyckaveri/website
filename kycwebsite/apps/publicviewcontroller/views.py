@@ -17,7 +17,10 @@ def home(request):
 
     projects_list = [project for project in Project.objects.all().filter(deleted=False).order_by('-date') if
                      project.display]
-    hours = reduce(lambda x, y: x + y, [project.hours * project.members_attended for project in projects_list])
+    hours = reduce(lambda x, y: x + y, [project.hours * project.members_attended for project in [project for project in
+                                                                                                 Project.objects.all().filter(
+                                                                                                     deleted=False).order_by(
+                                                                                                     '-date')]])
 
     images = [image.image_url for image in CarouselImage.objects.all().filter(deleted=False).order_by('index')]
 
