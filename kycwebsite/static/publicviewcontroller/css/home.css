@@ -81,16 +81,26 @@
 }
 
 .icon {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
+    margin-left: 2px;
+    margin-right: 2px;
 }
 
-.contact-link {
-    padding-left: 10px;
+.footer {
+    background-color: var(--navbar-bg);
+    width: 100vw;
+    padding: 50px 50px;
 }
 
-.contact-link a {
-    color: var(--accent-text);
+.contact-buttons {
+    margin-top: 10px;
+}
+
+.footer-text{
+    color: var(--grey-text);
+    text-align: right;
+    font-size: 16px;
 }
 
 @media (max-width: 1000px) {

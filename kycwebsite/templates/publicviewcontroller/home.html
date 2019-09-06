@@ -172,35 +172,25 @@ animateValue("hours-value", parseInt({{hours}}/2), {{hours}}, 500);
                 <span onclick="toggleMembers()" id="toggle-members-list">Show more</span>
                 {% endif %}
             </div>
-            <br/>
-            <div class="sidebar-div">
-                <div class="sidebar-title"> Contact Us </div>
-                <hr/>
-                <div class="container">
-                    <div class="row">
-                        <div class="ml-auto mr-auto">
-                            <a href="mailto:kyckaveri@gmail.com" target="_blank">
-                                <img src="{% static 'publicviewcontroller/img/mail.png' %}" class="icon"/>
-                            </a>
-                            <span class="contact-link">
-                                <a href="mailto:kyckaveri@gmail.com" target="_blank">Email us</a>
-                            </span>
-                        </div>
-                    </div>
-                    <br/>
-                    <div class="row">
-                        <div class="ml-auto mr-auto">
-                            <a href="#" target="_blank">
-                                <img src="{% static 'publicviewcontroller/img/facebook.png' %}" class="icon"/>
-                            </a>
-                            <span class="contact-link">
-                                <a href="#" target="_blank">Like us on Facebook</a>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
+        </div>
+
+        <div class="footer row">
+            <div class="col-6 contact-buttons">
+                <a href="mailto:kyckaveri@gmail.com" target="_blank">
+                    <img src="{% static 'publicviewcontroller/img/mail.png' %}" class="icon"/>
+                </a>
+                <a href="mailto:kyckaveri@gmail.com" target="_blank">
+                    <img src="{% static 'publicviewcontroller/img/facebook.png' %}" class="icon"/>
+                </a>
+            </div>
+            <div class="col-6 footer-text">
+                Kaveri Kannada Association<br/>
+                Maryland, Washington DC, and Virginia
+            </div>
+
+        </div>
+
     </div>
 
 </div>

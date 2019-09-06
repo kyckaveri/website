@@ -8,10 +8,11 @@
     --black-text: rgba(0, 0, 0, 0.9);
     --light-text: rgba(0, 0, 0, 0.5);
     --white-text: rgba(1, 1, 1, 0.9);
-    --brown-bg: rgb(158, 56, 20);
+    --grey-text: #a9aaab;
 
     /* Background Colors */
     --navbar-bg: #f5f6f7;
+    --brown-bg: rgb(158, 56, 20);
 }
 
 body {
