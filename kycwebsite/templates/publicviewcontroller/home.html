@@ -11,6 +11,8 @@ var carousel = document.getElementById('carousel');
 carousel.style.backgroundImage = "url({{ first_image }})";
 
 animateValue("hours-value", parseInt({{hours}}/2), {{hours}}, 500);
+
+window.setInterval(nextImage,5000);
 {% endblock %}
 
 {% block js %}
