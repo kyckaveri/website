@@ -94,37 +94,10 @@ animateValue("hours-value", parseInt({{hours}}/2), {{hours}}, 500);
     </div>
 
     <div class="row" id="second-row">
-        <!-- Member Information -->
-        <div class="col-lg-3 sidebar-column">
-            <div class="sidebar-div">
-                <div class="sidebar-title"> Members </div>
-                <hr/>
-                <div>
-                    {% for position, member in member_summary %}
-                    {{ position }}: {{ member }}<br/>
-                    {% endfor %}
-                </div>
-                {% if has_expansion %}
-                <div id="member-expansion">
-                    {% for position, member in member_expand %}
-                    {{ position }}: {{ member }}<br/>
-                    {% endfor %}
-                </div>
-                <span onclick="toggleMembers()" id="toggle-members-list">Show more</span>
-                {% endif %}
-            </div>
-        </div>
-
         <!-- Recent Projects -->
         <br/>
-        <div class="col-lg-6 sidebar-column">
+        <div class="col-lg-8 sidebar-column">
             <div class="container-fluid">
-                <div class="row sidebar-div">
-                    <div class="col-12 hours-volunteered">
-                        <b><div id="hours-value">0</div></b>Hours Volunteered
-                    </div>
-                </div>
-                <br/>
                 <div class="row sidebar-div">
                     <div class="col-12">
                         <div class="sidebar-title"> Recent Projects </div>
@@ -175,7 +148,31 @@ animateValue("hours-value", parseInt({{hours}}/2), {{hours}}, 500);
         </div>
 
         <!-- Contact Information -->
-        <div class="col-lg-3 sidebar-column">
+        <div class="col-lg-4 sidebar-column">
+            <div class="sidebar-div">
+                <div class="row sidebar-div">
+                    <div class="col-12 hours-volunteered">
+                        <b><div id="hours-value">0</div></b>Hours Volunteered
+                    </div>
+                </div>
+                <br/>
+                <div class="sidebar-title"> Members </div>
+                <hr/>
+                <div>
+                    {% for position, member in member_summary %}
+                    {{ position }}: {{ member }}<br/>
+                    {% endfor %}
+                </div>
+                {% if has_expansion %}
+                <div id="member-expansion">
+                    {% for position, member in member_expand %}
+                    {{ position }}: {{ member }}<br/>
+                    {% endfor %}
+                </div>
+                <span onclick="toggleMembers()" id="toggle-members-list">Show more</span>
+                {% endif %}
+            </div>
+            <br/>
             <div class="sidebar-div">
                 <div class="sidebar-title"> Contact Us </div>
                 <hr/>
