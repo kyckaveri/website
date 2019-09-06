@@ -160,7 +160,7 @@ animateValue("hours-value", parseInt({{hours}}/2), {{hours}}, 500);
                 <hr/>
                 <div>
                     {% for position, member in member_summary %}
-                    {{ position }}: {{ member }}<br/>
+                    {{ member }} <span class="member-position">({{ position }})</span><br/>
                     {% endfor %}
                 </div>
                 {% if has_expansion %}

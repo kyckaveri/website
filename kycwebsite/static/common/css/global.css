@@ -4,10 +4,11 @@
 
     /* Text Colors */
     --accent-text: #f56400;
-    --accent-bold: #dc5000;
+    --accent-bold: #cb4900;
     --black-text: rgba(0, 0, 0, 0.9);
     --light-text: rgba(0, 0, 0, 0.5);
     --white-text: rgba(1, 1, 1, 0.9);
+    --brown-bg: rgb(158, 56, 20);
 
     /* Background Colors */
     --navbar-bg: #f5f6f7;

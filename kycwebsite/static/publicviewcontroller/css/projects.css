@@ -16,9 +16,11 @@
     position: absolute;
     left: 5%;
 
-    background-color: black;
+    background-color: var(--accent-bold);
     color: white;
+
     padding: 0 15px;
+    border-radius: 10px;
 }
 
 .name {

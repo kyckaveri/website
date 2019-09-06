@@ -64,9 +64,10 @@ yearItem.className += ' highlight';
                     {% for member in item.PEOPLE %}
                     <div class="col-6 col-lg-4 w-100">
                         <div class="card">
-                            {{item.POSITION}}
-                            <hr/>
                             {{member}}
+                            <div class="position">
+                                {{item.POSITION}}
+                            </div>
                         </div>
                         <br/>
                     </div>
