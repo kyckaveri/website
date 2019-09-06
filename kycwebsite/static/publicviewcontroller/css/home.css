@@ -76,10 +76,6 @@
     color: var(--accent-text);
 }
 
-.bottom-bar {
-    font-size: 14px;
-}
-
 .icon {
     width: 30px;
     height: 30px;

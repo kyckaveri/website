@@ -1,6 +1,5 @@
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 from django.urls import reverse
-from django.contrib.staticfiles.storage import staticfiles_storage
 
 from .models import KYCMember, Project, KYCYearSnapshot, CarouselImage
 from .utils import get_project_obj, get_context
