@@ -4,7 +4,8 @@ import json
 
 
 class Position(models.Model):
-    """ Lower number (importance) = higher up. -1 is reserved for Adult Coordinator
+    """ Lower number (importance) = higher up.
+        -1 is reserved for Adult Coordinator. 100 is reserved for Executive Member
         importance field is used to sort members """
 
     importance = models.IntegerField(default=0)
@@ -14,7 +15,34 @@ class Position(models.Model):
         return self.position_name
 
 
+class JuniorPosition(models.Model):
+    """ Lower number (importance) = higher up.
+        100 is reserved for Executive Member
+        importance field is used to sort members """
+
+    importance = models.IntegerField(default=0)
+    position_name = models.CharField(max_length=30)
+
+
 class KYCMember(models.Model):
+    name = models.CharField(max_length=50)
+    position = models.ForeignKey(Position, on_delete=models.PROTECT)
+    deleted = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.name
+
+    def __lt__(self, other):
+        return self.position.importance - other.position.importance < 0
+
+    def __eq__(self, other):
+        return self.position.importance - other.position.importance == 0 and self.name == other.name
+
+    def __gt__(self, other):
+        return self.position.importance - other.position.importance > 0
+
+
+class KYCJuniorMember(models.Model):
     name = models.CharField(max_length=50)
     position = models.ForeignKey(Position, on_delete=models.PROTECT)
     deleted = models.BooleanField(default=False)
@@ -38,23 +66,33 @@ class KYCYearSnapshot(models.Model):
 
     def set(self):
         members_json = {
-            'MEMBERS': []
+            'MEMBERS': [],
+            'JUNIORS': []
         }
 
-        for importance in range(-1, 6):
-            try:
-                position = [str(position) for position in Position.objects.all() if position.importance == importance][
-                    0]
-            except IndexError:
-                continue
-
+        for position in Position.objects.all().order_by('importance'):
+            position_name = position.position_name
+            importance = position.importance
             relevant_members = [str(member) for member in KYCMember.objects.all().filter(deleted=False) if
                                 member.position.importance == importance]
             if len(relevant_members) == 0:
                 continue
 
             members_json['MEMBERS'].append({
-                "POSITION": position,
+                "POSITION": position_name,
+                "PEOPLE": relevant_members
+            })
+
+        for position in JuniorPosition.objects.all().order_by('importance'):
+            position_name = position.position_name
+            importance = position.importance
+            relevant_members = [str(member) for member in KYCJuniorMember.objects.all().filter(deleted=False) if
+                                member.position.importance == importance]
+            if len(relevant_members) == 0:
+                continue
+
+            members_json['JUNIORS'].append({
+                "POSITION": position_name,
                 "PEOPLE": relevant_members
             })
 

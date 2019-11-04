@@ -9,7 +9,7 @@ from datetime import datetime
 
 def home(request):
     members_list = [member for member in KYCMember.objects.all().filter(deleted=False) if
-                    member.position.importance < 5]
+                    member.position.importance is not 100]
     members_list.sort()
     member_list = [(member.position.position_name, member.name) for member in members_list]
 
