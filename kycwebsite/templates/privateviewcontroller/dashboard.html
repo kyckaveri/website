@@ -91,6 +91,27 @@
                 </div>
                 {% endfor %}
             </div>
+            <br/>
+            <div class="card">
+                Edit Junior Member
+                <hr/>
+                {% for member_info in junior_members %}
+                <div class="mini-card-container">
+                    <div class="mini-card">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-8 member-name">
+                                    {{member_info.MEMBER_NAME}}
+                                </div>
+                                <div class="col-4 member-link">
+                                    <a onclick="alert('Not Yet Supported :(');">Edit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
         <div class="col-12 col-lg-4">
             <br/>
@@ -212,5 +233,5 @@
         </div>
     </div>
 </div>
-
+<br/>
 {% endblock %}
