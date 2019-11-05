@@ -184,7 +184,6 @@ def add_project(request):
 
     try:
         project_name = request.POST["project_name"]
-        display = request.POST["display"]
         hours = float(request.POST["hours"])
         members_attended = int(float(request.POST["members_attended"]))
         date = request.POST["date"]
@@ -197,6 +196,12 @@ def add_project(request):
             reverse('privateviewcontroller:admindashboard', kwargs={"message": "Error creating new project"}))
 
     date = parse(date)
+
+    try:
+        display = request.POST["display"]
+    except KeyError:
+        display = 'off'
+
     display = display == 'on'
 
     new_project = Project(project_name=project_name, display=display, hours=hours, members_attended=members_attended,
@@ -214,7 +219,6 @@ def edit_project(request, index=None):
     if index is None:
         try:
             project_name = request.POST["project_name"]
-            display = request.POST["display"]
             hours = float(request.POST["hours"])
             members_attended = int(float(request.POST["members_attended"]))
             date = request.POST["date"]
@@ -228,6 +232,12 @@ def edit_project(request, index=None):
                 reverse('privateviewcontroller:admindashboard', kwargs={"message": "Error editing project"}))
 
         date = parse(date)
+
+        try:
+            display = request.POST["display"]
+        except KeyError:
+            display = 'off'
+
         display = display == 'on'
         project = Project.objects.all().filter(deleted=False).filter(image_url=original).first()
 
