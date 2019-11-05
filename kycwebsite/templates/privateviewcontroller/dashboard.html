@@ -51,6 +51,25 @@
                     <button type="submit" class="btn btn-light">Add</button>
                 </form>
             </div>
+            <br/>
+            <div class="card">
+                Add Junior Member
+                <hr/>
+                <form action="{% url 'privateviewcontroller:addjuniormember' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input class="form-control" name="name" placeholder="Member Name"/>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" name="position">
+                            {% for position in junior_positions %}
+                            <option>{{position}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-light">Add</button>
+                </form>
+            </div>
             <br/><br/>
             <div class="card">
                 Edit Member

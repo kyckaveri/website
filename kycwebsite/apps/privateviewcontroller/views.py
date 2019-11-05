@@ -2,7 +2,8 @@ from django.shortcuts import render, HttpResponseRedirect, reverse, HttpResponse
 from django.contrib.auth import authenticate, login as django_login, logout as django_logout
 from dateutil.parser import parse
 
-from ..publicviewcontroller.models import Position, KYCMember, Project, KYCYearSnapshot, CarouselImage
+from ..publicviewcontroller.models import Position, JuniorPosition, KYCMember, KYCJuniorMember, Project, \
+    KYCYearSnapshot, CarouselImage
 
 from datetime import datetime
 
@@ -46,6 +47,8 @@ def admin_dashboard(request, message=None):
 
     members = [m for m in KYCMember.objects.all().filter(deleted=False)]
     members.sort()
+    junior_members = [m for m in KYCJuniorMember.objects.all().filter(deleted=False)]
+    junior_members.sort()
 
     projects = [p for p in Project.objects.all().filter(deleted=False)]
     projects.sort(reverse=True)
@@ -58,7 +61,10 @@ def admin_dashboard(request, message=None):
 
     context = {
         "positions": [position.position_name for position in Position.objects.all().order_by('importance')],
+        "junior_positions": [position.position_name for position in
+                             JuniorPosition.objects.all().order_by('importance')],
         "members": [{"INDEX": index, "MEMBER_NAME": member.name} for index, member in enumerate(members)],
+        "junior_members": [{"INDEX": index, "MEMBER_NAME": member.name} for index, member in enumerate(junior_members)],
         "projects": [{
             "INDEX": index,
             "NAME": project.project_name,
@@ -88,6 +94,24 @@ def add_member(request):
 
     return HttpResponseRedirect(
         reverse('privateviewcontroller:admindashboard', kwargs={"message": f"Created new member: {name}"}))
+
+
+def add_junior_member(request):
+    if not request.user.is_superuser:
+        return HttpResponseRedirect(reverse('publicviewcontroller:home'))
+
+    try:
+        name = request.POST["name"]
+        position_name = request.POST["position"]
+    except KeyError:
+        return HttpResponseRedirect(
+            reverse('privateviewcontroller:admindashboard', kwargs={"message": "Error creating new member"}))
+    position = JuniorPosition.objects.filter(position_name=position_name).first()
+    new_member = KYCJuniorMember(name=name, position=position)
+    new_member.save()
+
+    return HttpResponseRedirect(
+        reverse('privateviewcontroller:admindashboard', kwargs={"message": f"Created new junior member: {name}"}))
 
 
 def remove_member(request, index):

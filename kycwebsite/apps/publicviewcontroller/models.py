@@ -26,7 +26,7 @@ class JuniorPosition(models.Model):
 
 class KYCMember(models.Model):
     name = models.CharField(max_length=50)
-    position = models.ForeignKey(Position, on_delete=models.PROTECT)
+    position = models.ForeignKey(JuniorPosition, on_delete=models.PROTECT)
     deleted = models.BooleanField(default=False)
 
     def __str__(self):
