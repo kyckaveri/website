@@ -315,7 +315,10 @@ def add_image(request):
         return HttpResponseRedirect(
             reverse('privateviewcontroller:admindashboard', kwargs={"message": "Error adding new image"}))
 
-    index = CarouselImage.objects.all().filter(deleted=False).order_by('index').last().index
+    try:
+        index = CarouselImage.objects.all().filter(deleted=False).order_by('index').last().index
+    except:
+        index = -1
     index += 1
 
     new_image = CarouselImage(name=name, image_url=image_url, index=index)
