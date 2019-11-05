@@ -21,17 +21,22 @@ def home(request):
 
     context = get_context(request, 'home')
 
-    context["first_image"] = images[0]
+    context["first_image"] = images[0] if len(images) > 0 else ""
     context["images"] = images
 
     context["has_expansion"] = len(member_list) > 3
     context["member_summary"] = member_list[:3] if len(member_list) > 3 else member_list
     context["member_expand"] = member_list[3:] if len(member_list) > 3 else None
 
-    context["hours"] = hours
-    context["projects"] = [get_project_obj(projects_list[i]) for i in range(4)]  # get only the first four projects,
-    context["columns"] = [[get_project_obj(projects_list[i]) for i in range(0, 2)],
-                          [get_project_obj(projects_list[i]) for i in range(2, 4)]]  # get only the first four projects,
+    context["hours"] = hours if hours > 0 else 1
+
+    try:
+        context["projects"] = [get_project_obj(projects_list[i]) for i in range(4)]  # get only the first four projects,
+        context["columns"] = [[get_project_obj(projects_list[i]) for i in range(0, 2)],
+                              [get_project_obj(projects_list[i]) for i in range(2, 4)]]  # get only the first four projects
+    except IndexError:
+        context["projects"] = []
+        context["columns"] = []
 
     return render(request, 'publicviewcontroller/home.html', context=context)
 
