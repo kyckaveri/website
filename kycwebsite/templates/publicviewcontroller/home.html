@@ -163,7 +163,8 @@ window.setInterval(nextImage,5000);
                 {% if has_expansion %}
                 <div id="member-expansion">
                     {% for position, member in member_expand %}
-                    {{ position }}: {{ member }}<br/>
+                    hello
+                    {{ member }} <span class="member-position">({{ position }})</span><br/>
                     {% endfor %}
                 </div>
                 <span onclick="toggleMembers()" id="toggle-members-list">Show more</span>
