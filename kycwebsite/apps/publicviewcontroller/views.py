@@ -127,6 +127,8 @@ def members_by_year(request, year):
     context = get_context(request, "members")
     context["snapshot"] = snapshot
     context["juniorsnapshot"] = junior_snapshot
+    context["has_snapshot"] = len(context["snapshot"]) > 0
+    context["has_juniorsnapshot"] = len(context["juniorsnapshot"]) > 0
     context["years"] = years
     context["year"] = year
 
