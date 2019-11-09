@@ -59,6 +59,7 @@ yearItem.className += ' highlight';
                     </div>
                 </div>
                 <br/>
+                {% if has_snapshot %}
                 Senior Members
                 <hr/>
                 <div class="row">
@@ -78,6 +79,8 @@ yearItem.className += ' highlight';
                     {% endfor %}
                     {% endfor %}
                 </div>
+                {% endif %}
+                {% if has_juniorsnapshot %}
                 Junior Members
                 <hr/>
                 <div class="row">
@@ -97,6 +100,7 @@ yearItem.className += ' highlight';
                     {% endfor %}
                     {% endfor %}
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>
