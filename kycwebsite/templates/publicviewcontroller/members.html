@@ -30,7 +30,7 @@ yearItem.className += ' highlight';
         <div class="col-3 year-picker-container">
             <div class="year-picker">
                 <div class="sidebar-title">
-                    Currently viewing {{year}}'s KYC members <br/>
+                    You are viewing {{year}}'s KYC members <br/>
                     Choose what year's roster to view below
                 </div>
                 {% for year in years %}
@@ -47,7 +47,7 @@ yearItem.className += ' highlight';
         <div class="col-12 col-lg-9 ml-auto member-view">
             <div class="container-fluid">
                 <div class="row year-picker-mobile sidebar-title">
-                    Viewing {{year}}'s roster, you can choose the year to the below
+                    You are viewing {{year}}'s KYC members. Choose what year's roster to view below
                 </div>
                 <div class="row year-picker-mobile">
                     <div class="ml-auto w-25">
@@ -81,7 +81,7 @@ yearItem.className += ' highlight';
                 </div>
                 {% endif %}
                 {% if has_juniorsnapshot %}
-                <div class="member-header">Senior Members</div>
+                <div class="member-header">Junior Members</div>
                 <hr/>
                 <div class="row">
                     {% for item in juniorsnapshot %}
