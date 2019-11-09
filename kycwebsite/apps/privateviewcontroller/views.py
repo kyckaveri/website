@@ -116,17 +116,13 @@ def add_member(request):
 
     try:
         position = Position.objects.filter(position_name=position_name).first()
-        x = []
-        if position is None:
-            for p in Position.objects.all():
-                x.append((p.position_name, p.position_name == position_name))
         new_member = KYCMember(name=name, position=position)
         new_member.save()
     except:
         return HttpResponseRedirect(
             reverse(
                 "privateviewcontroller:admindashboard",
-                kwargs={"message": f"Error creating new member: {str(x)}"},
+                kwargs={"message": "Error creating new member"},
             )
         )
 
