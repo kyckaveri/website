@@ -309,6 +309,10 @@ def create_snapshot(request):
         member.deleted = True
         member.save()
 
+    for member in KYCJuniorMember.objects.all().filter(deleted=False):
+        member.deleted = True
+        member.save()
+
     return HttpResponseRedirect(
         reverse('privateviewcontroller:admindashboard',
                 kwargs={"message": f"Created snapshot, please add all new members"}))

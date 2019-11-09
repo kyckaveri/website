@@ -38,7 +38,7 @@ def home(request):
     else:
         context["member_expand"].extend(junior_members_list)
 
-    context["has_expansion"] = len(context["member_expand"]) > 0
+    context["has_expansion"] = len(context["member_expand"]) > 0 if context["member_expand"] is not None else False
 
     context["hours"] = hours if hours > 0 else 1
 
