@@ -7,7 +7,6 @@ from .models import (
     KYCYearSnapshot,
     CarouselImage,
     KYCJuniorMember,
-    JuniorPosition,
 )
 from .utils import get_project_obj, get_context
 

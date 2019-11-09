@@ -12,6 +12,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "secret")
 DEBUG = os.environ.get("DEBUG", "True") == "True"
+LOGIN_BUTTON = os.environ.get("LOGIN_BUTTON", "True") == "True"
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
