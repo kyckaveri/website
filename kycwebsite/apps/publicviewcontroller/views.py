@@ -68,17 +68,21 @@ def members_by_year(request, year):
         years.extend(extension)
 
     try:
-        snapshot = snapshots.get(year=year).get()
+        snapshotobj = snapshots.get(year=year)
+        snapshot = snapshotobj.get()
+        junior_snapshot = snapshotobj.get_junior()
     except KYCYearSnapshot.DoesNotExist:
         if year == datetime.now().year:
-            snapshot = KYCYearSnapshot()
-            snapshot.set()
-            snapshot = snapshot.get()
+            snapshotobj = KYCYearSnapshot()
+            snapshotobj.set()
+            snapshot = snapshotobj.get()
+            junior_snapshot = snapshotobj.get_junior()
         else:
             return HttpResponseRedirect(reverse('publicviewcontroller:members'))
 
     context = get_context(request, "members")
     context["snapshot"] = snapshot
+    context["juniorsnapshot"] = junior_snapshot
     context["years"] = years
     context["year"] = year
 

@@ -95,11 +95,13 @@ class KYCYearSnapshot(models.Model):
                 "POSITION": position_name,
                 "PEOPLE": relevant_members
             })
-
         self.content_json = json.dumps(members_json)
 
     def get(self):
         return json.loads(self.content_json)["MEMBERS"]
+
+    def get_junior(self):
+        return json.loads(self.content_json)["JUNIORS"]
 
     def __str__(self):
         return f"{self.year}"

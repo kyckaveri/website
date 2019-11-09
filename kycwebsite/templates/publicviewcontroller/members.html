@@ -59,8 +59,29 @@ yearItem.className += ' highlight';
                     </div>
                 </div>
                 <br/>
+                Senior Members
+                <hr/>
                 <div class="row">
                     {% for item in snapshot %}
+                    {% for member in item.PEOPLE %}
+                    <div class="col-6 col-lg-4 w-100">
+                        <div class="card">
+                            {{member}}
+                            <div class="position">
+                                {{item.POSITION}}
+                            </div>
+                        </div>
+                        <br/>
+                    </div>
+                    <br/>
+                    <br/>
+                    {% endfor %}
+                    {% endfor %}
+                </div>
+                Junior Members
+                <hr/>
+                <div class="row">
+                    {% for item in juniorsnapshot %}
                     {% for member in item.PEOPLE %}
                     <div class="col-6 col-lg-4 w-100">
                         <div class="card">
