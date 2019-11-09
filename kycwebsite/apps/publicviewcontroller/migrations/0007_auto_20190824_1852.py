@@ -5,14 +5,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('publicviewcontroller', '0006_carouselimage_name'),
-    ]
+    dependencies = [("publicviewcontroller", "0006_carouselimage_name")]
 
     operations = [
         migrations.AlterField(
-            model_name='carouselimage',
-            name='name',
+            model_name="carouselimage",
+            name="name",
             field=models.CharField(max_length=100),
-        ),
+        )
     ]

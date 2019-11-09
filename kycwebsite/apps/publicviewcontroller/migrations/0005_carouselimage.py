@@ -5,17 +5,23 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('publicviewcontroller', '0004_auto_20190822_1536'),
-    ]
+    dependencies = [("publicviewcontroller", "0004_auto_20190822_1536")]
 
     operations = [
         migrations.CreateModel(
-            name='CarouselImage',
+            name="CarouselImage",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('index', models.IntegerField(default=0)),
-                ('image_url', models.CharField(max_length=2000)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("index", models.IntegerField(default=0)),
+                ("image_url", models.CharField(max_length=2000)),
             ],
-        ),
+        )
     ]

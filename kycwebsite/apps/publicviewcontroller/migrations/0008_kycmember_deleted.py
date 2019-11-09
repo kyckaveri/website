@@ -5,14 +5,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('publicviewcontroller', '0007_auto_20190824_1852'),
-    ]
+    dependencies = [("publicviewcontroller", "0007_auto_20190824_1852")]
 
     operations = [
         migrations.AddField(
-            model_name='kycmember',
-            name='deleted',
+            model_name="kycmember",
+            name="deleted",
             field=models.BooleanField(default=False),
-        ),
+        )
     ]

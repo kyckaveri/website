@@ -5,19 +5,17 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('publicviewcontroller', '0008_kycmember_deleted'),
-    ]
+    dependencies = [("publicviewcontroller", "0008_kycmember_deleted")]
 
     operations = [
         migrations.AddField(
-            model_name='carouselimage',
-            name='deleted',
+            model_name="carouselimage",
+            name="deleted",
             field=models.BooleanField(default=False),
         ),
         migrations.AddField(
-            model_name='project',
-            name='deleted',
+            model_name="project",
+            name="deleted",
             field=models.BooleanField(default=False),
         ),
     ]

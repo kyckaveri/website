@@ -36,7 +36,10 @@ class KYCMember(models.Model):
         return self.position.importance - other.position.importance < 0
 
     def __eq__(self, other):
-        return self.position.importance - other.position.importance == 0 and self.name == other.name
+        return (
+            self.position.importance - other.position.importance == 0
+            and self.name == other.name
+        )
 
     def __gt__(self, other):
         return self.position.importance - other.position.importance > 0
@@ -54,7 +57,10 @@ class KYCJuniorMember(models.Model):
         return self.position.importance - other.position.importance < 0
 
     def __eq__(self, other):
-        return self.position.importance - other.position.importance == 0 and self.name == other.name
+        return (
+            self.position.importance - other.position.importance == 0
+            and self.name == other.name
+        )
 
     def __gt__(self, other):
         return self.position.importance - other.position.importance > 0
@@ -65,36 +71,37 @@ class KYCYearSnapshot(models.Model):
     year = models.IntegerField(default=2000)
 
     def set(self):
-        members_json = {
-            'MEMBERS': [],
-            'JUNIORS': []
-        }
+        members_json = {"MEMBERS": [], "JUNIORS": []}
 
-        for position in Position.objects.all().order_by('importance'):
+        for position in Position.objects.all().order_by("importance"):
             position_name = position.position_name
             importance = position.importance
-            relevant_members = [str(member) for member in KYCMember.objects.all().filter(deleted=False) if
-                                member.position.importance == importance]
+            relevant_members = [
+                str(member)
+                for member in KYCMember.objects.all().filter(deleted=False)
+                if member.position.importance == importance
+            ]
             if len(relevant_members) == 0:
                 continue
 
-            members_json['MEMBERS'].append({
-                "POSITION": position_name,
-                "PEOPLE": relevant_members
-            })
+            members_json["MEMBERS"].append(
+                {"POSITION": position_name, "PEOPLE": relevant_members}
+            )
 
-        for position in JuniorPosition.objects.all().order_by('importance'):
+        for position in JuniorPosition.objects.all().order_by("importance"):
             position_name = position.position_name
             importance = position.importance
-            relevant_members = [str(member) for member in KYCJuniorMember.objects.all().filter(deleted=False) if
-                                member.position.importance == importance]
+            relevant_members = [
+                str(member)
+                for member in KYCJuniorMember.objects.all().filter(deleted=False)
+                if member.position.importance == importance
+            ]
             if len(relevant_members) == 0:
                 continue
 
-            members_json['JUNIORS'].append({
-                "POSITION": position_name,
-                "PEOPLE": relevant_members
-            })
+            members_json["JUNIORS"].append(
+                {"POSITION": position_name, "PEOPLE": relevant_members}
+            )
         self.content_json = json.dumps(members_json)
 
     def get(self):
@@ -123,12 +130,14 @@ class Project(models.Model):
     display = models.BooleanField(default=True)
     hours = models.DecimalField(decimal_places=2, max_digits=4)
     members_attended = models.IntegerField(default=0)
-    date = models.DateField('Event Date')
+    date = models.DateField("Event Date")
     image_url = models.CharField(max_length=2000)
     deleted = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.project_name} - {self.date.month}/{self.date.day}/{self.date.year}"
+        return (
+            f"{self.project_name} - {self.date.month}/{self.date.day}/{self.date.year}"
+        )
 
     def __lt__(self, other):
         return self.date < other.date

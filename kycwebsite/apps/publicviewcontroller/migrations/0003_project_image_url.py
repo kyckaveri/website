@@ -5,14 +5,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('publicviewcontroller', '0002_project'),
-    ]
+    dependencies = [("publicviewcontroller", "0002_project")]
 
     operations = [
         migrations.AddField(
-            model_name='project',
-            name='image_url',
-            field=models.CharField(default='', max_length=2000),
-        ),
+            model_name="project",
+            name="image_url",
+            field=models.CharField(default="", max_length=2000),
+        )
     ]

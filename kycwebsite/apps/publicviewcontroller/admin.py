@@ -1,5 +1,13 @@
 from django.contrib import admin
-from .models import KYCMember, Project, CarouselImage, Position, KYCYearSnapshot, KYCJuniorMember, JuniorPosition
+from .models import (
+    KYCMember,
+    Project,
+    CarouselImage,
+    Position,
+    KYCYearSnapshot,
+    KYCJuniorMember,
+    JuniorPosition,
+)
 
 admin.site.register(KYCMember)
 admin.site.register(Project)

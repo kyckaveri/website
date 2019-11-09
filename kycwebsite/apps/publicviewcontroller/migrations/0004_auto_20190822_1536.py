@@ -5,22 +5,28 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('publicviewcontroller', '0003_project_image_url'),
-    ]
+    dependencies = [("publicviewcontroller", "0003_project_image_url")]
 
     operations = [
         migrations.CreateModel(
-            name='KYCYearSnapshot',
+            name="KYCYearSnapshot",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('content_json', models.CharField(max_length=2000)),
-                ('year', models.IntegerField(default=2000)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("content_json", models.CharField(max_length=2000)),
+                ("year", models.IntegerField(default=2000)),
             ],
         ),
         migrations.AlterField(
-            model_name='project',
-            name='image_url',
+            model_name="project",
+            name="image_url",
             field=models.CharField(max_length=2000),
         ),
     ]

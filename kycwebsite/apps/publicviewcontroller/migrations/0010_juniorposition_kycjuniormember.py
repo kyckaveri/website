@@ -6,26 +6,46 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('publicviewcontroller', '0009_auto_20190824_2223'),
-    ]
+    dependencies = [("publicviewcontroller", "0009_auto_20190824_2223")]
 
     operations = [
         migrations.CreateModel(
-            name='JuniorPosition',
+            name="JuniorPosition",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('importance', models.IntegerField(default=0)),
-                ('position_name', models.CharField(max_length=30)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("importance", models.IntegerField(default=0)),
+                ("position_name", models.CharField(max_length=30)),
             ],
         ),
         migrations.CreateModel(
-            name='KYCJuniorMember',
+            name="KYCJuniorMember",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50)),
-                ('deleted', models.BooleanField(default=False)),
-                ('position', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='publicviewcontroller.Position')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50)),
+                ("deleted", models.BooleanField(default=False)),
+                (
+                    "position",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="publicviewcontroller.Position",
+                    ),
+                ),
             ],
         ),
     ]
