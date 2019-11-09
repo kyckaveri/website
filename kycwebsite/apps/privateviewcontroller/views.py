@@ -115,6 +115,7 @@ def add_member(request):
         )
 
     position = Position.objects.filter(position_name=position_name).first()
+    print(position)
     new_member = KYCMember(name=name, position=position)
     new_member.save()
 
